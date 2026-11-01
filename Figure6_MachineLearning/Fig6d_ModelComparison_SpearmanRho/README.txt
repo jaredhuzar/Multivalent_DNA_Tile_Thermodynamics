@@ -1,0 +1,1 @@
+Fig 6d. Spearman rho model-comparison (10-fold CV): per-fold mean +/- std and out-of-fold rho for each model.

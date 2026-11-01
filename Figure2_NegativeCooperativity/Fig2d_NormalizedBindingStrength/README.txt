@@ -1,0 +1,1 @@
+Fig 2d. Normalized binding strength = measured dG / NN-predicted dG (per construct, all bond types), vs number of binding positions. Green curve = exponential-decay fit. Dimensionless ratio decaying from ~0.5 (N=2) to ~0.2 (N=10) = diminishing per-bond returns.

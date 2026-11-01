@@ -1,0 +1,1 @@
+Fig 2a. Droop-corrected median Tm (one point per interface) vs binding sites, faceted by bond length. Source: authoritative Tm table (reliability rule; Tm_SE + plateau_confident included).

@@ -1,0 +1,9 @@
+response,predictor,marginal_rho,partial_rho,partial_p,n
+Tm,Num_Bonds,-0.198,0.033,5.9e-01,265
+Tm,span_nm,-0.452,-0.389,5.5e-11,265
+Tm,bond_len,0.202,0.347,6.3e-09,265
+Tm,GC,0.152,0.322,8.6e-08,265
+Exp_dG,Num_Bonds,0.073,-0.059,3.5e-01,253
+Exp_dG,span_nm,0.347,0.311,4.5e-07,253
+Exp_dG,bond_len,-0.292,-0.328,9.2e-08,253
+Exp_dG,GC,-0.001,-0.181,3.9e-03,253

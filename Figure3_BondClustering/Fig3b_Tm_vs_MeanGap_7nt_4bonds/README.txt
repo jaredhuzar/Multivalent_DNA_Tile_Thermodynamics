@@ -1,0 +1,1 @@
+Fig 3b. Tm vs mean bond gap (7nt, 4 sites). Source: authoritative Tm table (per-construct median).

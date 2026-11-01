@@ -1,0 +1,1 @@
+Fig 3c. Relative occupancy theta(d)/theta(d1) vs nearest-neighbor bond distance (nm), interfaces with 7nt bonds and 4 binding sites. Classical-OLS point estimate with 95% CI.

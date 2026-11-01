@@ -1,0 +1,9 @@
+response,predictor,partial_rho_resid,p,n
+Tm,Num_Bonds,0.461,1.6e-14,250
+Tm,span_nm,-0.581,5.7e-24,250
+Tm,bond_len,0.719,5.0e-41,250
+Tm,GC,0.438,3.7e-13,250
+Exp_dG,Num_Bonds,-0.42,1.4e-11,238
+Exp_dG,span_nm,0.502,1.3e-16,238
+Exp_dG,bond_len,-0.659,4.9e-31,238
+Exp_dG,GC,-0.214,8.9e-04,238

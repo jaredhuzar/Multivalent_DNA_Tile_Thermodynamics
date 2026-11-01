@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+run_all.log
+# large raw MD trajectories are intentionally excluded (regenerate from sim notebooks)
+*.gsd

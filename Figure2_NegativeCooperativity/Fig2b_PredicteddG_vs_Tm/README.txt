@@ -1,0 +1,1 @@
+Fig 2b. NN-predicted interface dG (sum of per-bond nearest-neighbor contributions) vs experimental Tm, per construct (authoritative Tm table). Pearson r=0.286, Spearman rho=0.058 (weak correlation).
