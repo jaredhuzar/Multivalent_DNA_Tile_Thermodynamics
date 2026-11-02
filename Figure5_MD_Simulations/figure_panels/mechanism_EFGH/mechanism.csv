@@ -1,0 +1,9 @@
+axis,stiffness,dH_bridge_perbond,dH_bend_perbond,unbound_gap_mean,unbound_gap_std
+rigidity,4,-6.383,-1.181,3.578,1.253
+rigidity,20,-6.298,-1.804,3.246,1.183
+rigidity,80,-6.33,-1.251,3.348,1.235
+rigidity,240,-6.226,-1.005,3.327,1.22
+linker,4,-6.33,-1.251,3.348,1.235
+linker,10,-5.351,-0.9,2.304,0.801
+linker,20,-5.263,-0.54,2.036,0.632
+linker,40,-5.231,-1.629,1.905,0.498

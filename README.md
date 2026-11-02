@@ -8,8 +8,8 @@ Thermodynamics* (main text + SI, 11/1/2026). **Data and code are organized one f
   stay at the root): `Filtered_DF_Tm.csv` / `_high` / `Filtered_DF_HS.csv` / `Filtered_DF_std.csv`,
   `Experimental_Trends/construct_medians.csv`, `nt{5,6,7,9}.csv`, `nt9_stack.csv`,
   `DNA Sequences.xlsx`, `DNA Sequences - 6nt bonds.csv`, `Melting_Results/` (raw plate-reader curves) +
-  `Tile_TileResultsKey*.csv`, and the notebooks `Tile_Tile_Master.ipynb`, `TmPredictor_NewTm.ipynb`,
-  `oxDNA_Melting.ipynb` (outputs stripped).
+  `Tile_TileResultsKey*.csv`, and the notebooks `Tile_Tile_Master.ipynb`, `TmPredictor_NewTm.ipynb`
+  (outputs stripped).
 - **One folder per figure:** `Figure1_Platform_AFM/`, `Figure2_NegativeCooperativity/`,
   `Figure3_BondClustering/`, `Figure4_PhenomenologicalModel/`, `Figure5_MD_Simulations/`,
   `Figure6_MachineLearning/`, and `Supplementary/`. Each panel subfolder holds its `data.csv`,
@@ -38,6 +38,7 @@ Raw MD trajectories (`*.gsd`, ~0.7 GB) are **not** included; Fig 5 reproduces fr
 `Theoretical*` curves · model fit: `../TmPredictor_NewTm.ipynb`. Model comparison: `../Supplementary/Model_Comparison_All/`.
 
 ## Figure 5 — Coarse-grained MD  → `Figure5_MD_Simulations/`
+(Panels E–H binder-position data — tip-gap/anchor 4×4 matrices + per-frame swarm — are in `figure_panels/mechanism_EFGH/`.)
 `simulation_notebooks/` (24 HOOMD notebooks) · `figure_panels/` (b–h) · `processed_data_npz/` (291 runs).
 
 ## Figure 6 — Machine learning  → `Figure6_MachineLearning/`
@@ -47,7 +48,7 @@ Raw MD trajectories (`*.gsd`, ~0.7 GB) are **not** included; Fig 5 reproduces fr
 ## Supplementary (11/1 numbering)  → `Supplementary/`
 S2 OLS avidity `Alpha_Geometry_Controlled/`,`OLS_alpha_geometry/` · S3 OLS Tm `OLS_Tm_geometry/` ·
 S4 ΔH/ΔS vs distance `HS_vs_MeanGap_7nt_4bonds/` (+ Fig3 `HS_vs_Distance`) · S5 MD (Figure5) ·
-S6 SHAP (Figure6) · S7 oxDNA `../oxDNA_Melting.ipynb` · S8 `S4_BondPosition_Melting/` ·
+S6 SHAP (Figure6) · S7 oxDNA tile RMSF — analysis not included (needs the oxDNA trajectory, kept outside the repo) · S8 `S4_BondPosition_Melting/` ·
 S9 `S2_BondLengthCount_Steepness/` · S10 OLS dG `OLS_dG_geometry/` · S11 `S5_BondLength_Entropy/` ·
 S12 `S7_PredictedVsMeasured_Tm/` · Tested-models table `Model_Comparison_All/`.
 Regenerators: `SI_Figures_regenerate.py`, `add_ols_and_meangap.py`. Also `CooperativeUnit_vs_BondCount/`,
@@ -74,7 +75,7 @@ Regenerators: `SI_Figures_regenerate.py`, `add_ols_and_meangap.py`. Also `Cooper
 | S3, S10 | `python3 Supplementary/add_ols_and_meangap.py` (OLS_Tm_geometry, OLS_dG_geometry) |
 | S4 | `python3 Figure3_BondClustering/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py`, `…/add_ols_and_meangap.py` |
 | S6 | `python3 Figure6_MachineLearning/Fig6e_SHAP_Values/recompute_shap_fulltrain.py` |
-| S7 | `oxDNA_Melting.ipynb` |
+| S7 | oxDNA tile RMSF — not included (external oxDNA trajectory) |
 | S8, S9, S11, S12 | `python3 Supplementary/SI_Figures_regenerate.py` |
 | tested-models table | `python3 Supplementary/Model_Comparison_All/models_and_pdf.py` then `pdf_report.py` |
 

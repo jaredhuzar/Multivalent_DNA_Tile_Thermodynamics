@@ -49,12 +49,12 @@ Each script auto-detects the repo root and writes into its own folder, so run it
 | Fig 3 ΔH/ΔS | `python3 Figure3_BondClustering/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |
 | Fig 4b | `TmPredictor_NewTm.ipynb` → `Figure4_PhenomenologicalModel/Phenomenological_Model/` |
 | Fig 4c–4f | `python3 Figure4_PhenomenologicalModel/Theory_Scripts/*.py` |
-| Fig 5 | `Figure5_MD_Simulations/simulation_notebooks/*.ipynb` (panels in `figure_panels/`) |
+| Fig 5 | `Figure5_MD_Simulations/simulation_notebooks/*.ipynb`; panels in `figure_panels/` (E–H binder-position data in `figure_panels/mechanism_EFGH/`) |
 | Fig 6b/6c/6d | `Tile_Tile_Master.ipynb` (XGBoost cells) → `Figure6_MachineLearning/` |
 | Fig 6e | `python3 Figure6_MachineLearning/Fig6e_SHAP_Values/recompute_shap_fulltrain.py` |
 | SI S2/S3/S10 | `python3 Supplementary/Alpha_Geometry_Controlled/alpha_geometry_ols.py`; `python3 Supplementary/add_ols_and_meangap.py` |
 | SI S4 | `python3 Figure3_BondClustering/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py`; `.../add_ols_and_meangap.py` |
-| SI S7 | `oxDNA_Melting.ipynb` |
+| SI S7 | oxDNA tile RMSF — analysis not included (external oxDNA trajectory) |
 | SI S8/S9/S11/S12 | `python3 Supplementary/SI_Figures_regenerate.py` |
 | Tested-models table | `python3 Supplementary/Model_Comparison_All/models_and_pdf.py` then `pdf_report.py` |
 
