@@ -30,6 +30,14 @@ Raw MD trajectories (`*.gsd`, ~0.7 GB) are **not** included; Fig 5 reproduces fr
 `NNdG_ExpdG_saltfixed/` (2a) · `Alpha_PerBond_Efficiency/` (2c, compute_alpha.py) · `Fig2d_ddG/` (2d) ·
 `Effective_Molarity/` + `Avidity/` (2e) · Tm panel (2b): filter `../Filtered_DF_Tm.csv`.
 
+**Salt correction (SantaLucia).** The NN-predicted ΔG uses a monovalent-equivalent salt model:
+`[Na⁺]_eq = 3.3·√[Mg²⁺]` with `[Mg²⁺] = 11.3 mM`, and `ΔG_salt = ΔG_1M − 0.114·n_steps·ln[Na⁺]_eq`,
+where `n_steps = n_duplex·(L−1)` phosphate steps (each sticky-end duplex of length `L` bp contributes
+`L−1`; a binding site has `n_duplex = 2` duplexes). This per-duplex convention is applied consistently
+in the notebook (`saltCorrection`), the α/EM scripts, and the per-interface table. The salt term shifts
+only the sequence-predicted ΔG (α, EM, Fig 2a/2d backing data, Fig 6 features); it does not touch any
+measured Tm/ΔH/ΔS, the phenomenological model, or model/figure rankings.
+
 ## Figure 3 — Bond clustering  → `Figure3_BondClustering/`
 `Fig3b_Tm_vs_MeanGap_7nt_4bonds/` · `Fig3c_RelativeOccupancy_vs_Distance/` · `Fig3e_Tm_vs_BondPosition_ConstantSeq/` · `HS_vs_Distance_7nt_4bonds/`.
 
@@ -59,10 +67,10 @@ Regenerators: `SI_Figures_regenerate.py`, `add_ols_and_meangap.py`. Also `Cooper
 
 | panel | how to generate |
 |---|---|
-| 2a | `Tile_Tile_Master.ipynb` → `Figure2…/NNdG_ExpdG_saltfixed/` |
+| 2a | `python3 Figure2_NegativeCooperativity/NNdG_ExpdG_saltfixed/regen_nndg_vs_exp.py` |
 | 2b | filter `Filtered_DF_Tm.csv` by `NucleotideBonds` & `Num_Bonds` (7nt 4/5, 5nt 9/10) |
 | 2c | `python3 Figure2_NegativeCooperativity/Alpha_PerBond_Efficiency/compute_alpha.py` |
-| 2d | `Tile_Tile_Master.ipynb` → `Figure2…/Fig2d_ddG/` |
+| 2d | `python3 Figure2_NegativeCooperativity/Fig2d_ddG/regen_fig2d_ddg.py` (backing data); panel `test2_measured_only.svg` is measured-only |
 | 2e | `python3 Figure2_NegativeCooperativity/Effective_Molarity/effective_molarity.py` then `…/Avidity/plot_avidity.py` |
 | 3b/3c/3e | `Tile_Tile_Master.ipynb` → `Figure3_BondClustering/<panel>/` |
 | 3 ΔH/ΔS vs distance | `python3 Figure3_BondClustering/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |

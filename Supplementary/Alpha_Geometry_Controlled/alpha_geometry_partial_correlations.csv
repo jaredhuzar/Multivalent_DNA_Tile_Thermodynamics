@@ -1,5 +1,5 @@
 response,predictor,marginal_rho,partial_rho,partial_p,n
-alpha,Num_Bonds,-0.794,-0.667,7.8e-29,213
-alpha,span_nm,-0.743,-0.551,2.4e-18,213
-alpha,bond_len,0.11,-0.397,1.8e-09,213
-alpha,GC,-0.129,-0.12,8.1e-02,213
+alpha,Num_Bonds,-0.813,-0.709,7.6e-34,213
+alpha,span_nm,-0.745,-0.569,1.2e-19,213
+alpha,bond_len,0.091,-0.426,8.4e-11,213
+alpha,GC,-0.114,-0.094,1.7e-01,213

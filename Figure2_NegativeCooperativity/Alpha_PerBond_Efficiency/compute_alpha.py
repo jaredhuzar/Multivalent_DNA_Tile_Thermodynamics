@@ -48,14 +48,14 @@ run(30)                            # builds nt5_1/2, nt6_1/2, nt7_1/2, nt9_1/2
 
 # ---- EACH BINDING SITE = TWO duplex bonds (add_Pairs sums two helices per code position).
 # Each bond's monovalent energy comes ONLY from its OWN sequence (SantaLucia NN dG37, computed by
-# calc_unified_nn) and its OWN full salt correction  dG_salt = dG_1M - 0.114*L*ln(sqrt(ionic)).
+# calc_unified_nn) and its OWN full salt correction  dG_salt = dG_1M - 0.114*(L-1)*ln(3.3*sqrt([Mg])).
 # No coaxial-stacking term and no half-splitting: each bond is an isolated, salt-corrected duplex.
 LEN = {"5": 5, "X": 5, "6": 6, "7": 7, "9": 9, "A": 7, "B": 7}
 nt1 = {"5": G["nt5_1"], "6": G["nt6_1"], "7": G["nt7_1"], "9": G["nt9_1"]}  # per-helix rows: Sequence + dG37
 const1 = G["constant_1"]
 calc = G["calc_unified_nn"]
-ionic = 0.0 + 3.3 * 0.0114
-def _corr(L): return 0.114 * L * math.log(math.sqrt(ionic))     # salt term for one duplex of length L
+ionic = 3.3 * math.sqrt(0.0113)   # [Na+]_eq = 3.3*sqrt([Mg2+]); Mg = 11.3 mM
+def _corr(L): return 0.114 * (L-1) * math.log(ionic)     # salt term for one duplex of length L
 
 def _bond_seqs(code):
     """the two helix SEQUENCES (+length) for each bonded code position; None if unknown char."""
@@ -87,7 +87,7 @@ def per_bond_dG(code):
 
 # ---- provenance check: each bond's energy = NN(its sequence) - full salt correction ----
 _ex = "00000X09990"
-print("PROVENANCE CHECK for", _ex, "(each bond = calc_unified_nn(sequence) - 0.114*L*ln(sqrt(ionic))):")
+print("PROVENANCE CHECK for", _ex, "(each bond = calc_unified_nn(sequence) - 0.114*(L-1)*ln(3.3*sqrt([Mg]))):")
 for s1, s2, L in _bond_seqs(_ex):
     for s in (s1, s2):
         nn = calc(s)["Delta_G_37 (kcal/mol)"]

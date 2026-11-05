@@ -10,6 +10,8 @@ run(){
   else echo "FAIL"; fail=$((fail+1)); failed+=("$1"); fi
 }
 echo "=== Figure 2 ==="
+run Figure2_NegativeCooperativity/NNdG_ExpdG_saltfixed/regen_nndg_vs_exp.py
+run Figure2_NegativeCooperativity/Fig2d_ddG/regen_fig2d_ddg.py
 run Figure2_NegativeCooperativity/Alpha_PerBond_Efficiency/compute_alpha.py
 run Figure2_NegativeCooperativity/Effective_Molarity/effective_molarity.py
 run Figure2_NegativeCooperativity/Avidity/plot_avidity.py

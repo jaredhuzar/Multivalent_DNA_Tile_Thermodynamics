@@ -45,8 +45,8 @@ exec(nb.cells[30].source, G)
 LEN = {"5": 5, "X": 5, "6": 6, "7": 7, "9": 9, "A": 7, "B": 7}
 nt1 = {"5": G["nt5_1"], "6": G["nt6_1"], "7": G["nt7_1"], "9": G["nt9_1"]}
 const1 = G["constant_1"]; calc = G["calc_unified_nn"]; init_G = G["init_G"]
-ionic = 3.3 * 0.0114
-def _corr(L): return 0.114 * L * math.log(math.sqrt(ionic))
+ionic = 3.3 * math.sqrt(0.0113)   # [Na+]_eq = 3.3*sqrt([Mg2+]); Mg = 11.3 mM
+def _corr(L): return 0.114 * (L-1) * math.log(ionic)
 def _init(seq):                                   # per-bond bimolecular initiation dG (both ends)
     seq = seq.upper(); return sum(init_G["AT" if b in "AT" else "GC"] for b in (seq[0], seq[-1]))
 
