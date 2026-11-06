@@ -31,7 +31,8 @@ run Figure2_NegativeCooperativity/Fig2e_Avidity/em_avidity_report.py
 echo "=== Figure 3 ==="
 run Extras/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py
 run Extras/HS_vs_Distance_7nt_4bonds/linear_vs_quadratic.py
-echo "=== Figure 4 ==="
+echo "=== Figure 4 (phenomenological model: Fig 4b pred-vs-exp, model performances, param CIs) ==="
+run_nb TmPredictor_NewTm.ipynb
 run Figure4_PhenomenologicalModel/Theory_Scripts/entropy_penalty_vs_spacing.py
 run Figure4_PhenomenologicalModel/Theory_Scripts/entropy_penalty_vs_numbonds.py
 run Figure4_PhenomenologicalModel/Theory_Scripts/theory_fracbound_noocc.py
@@ -41,6 +42,7 @@ echo "=== Supplementary ==="
 run Extras/CooperativeUnit_vs_BondCount/coop_unit.py
 run Supplementary/Alpha_Geometry_Controlled/alpha_geometry_ols.py
 run Supplementary/add_ols_and_meangap.py
+run Figure3_BondClustering/Fig3b_Tm_vs_BondSpan_OLSResiduals/make_fig3b.py
 run Supplementary/SI_Figures_regenerate.py
 run Supplementary/TableS1_Model_Comparison_All/models_and_pdf.py
 run Supplementary/TableS1_Model_Comparison_All/pdf_report.py

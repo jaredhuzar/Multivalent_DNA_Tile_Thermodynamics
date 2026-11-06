@@ -13,7 +13,8 @@ nb=nbformat.read("TmPredictor_NewTm.ipynb",as_version=4)
 G={"np":np,"pd":pd}
 exec(nb.cells[1].source,G); exec(nb.cells[2].source,G)   # constants + TH (Excel)
 R_CAL=G["R_CAL"]; C_TILE=G["C_TILE"]; EDGE=G["EDGE"]; TH=G["TH"]
-FIT=dict(lam=139.82, dS_int=-8.131, base=5.237)           # best Nscale params
+_ci=pd.read_csv("Supplementary/TableS1_Model_Comparison_All/phenomenological_parameter_CIs.csv").set_index("parameter")["point_estimate"]
+FIT=dict(lam=float(_ci["lambda_nm"]), dS_int=float(_ci["dS_Bond_cal_mol_K"]), base=float(_ci["dS_0_cal_mol_K"]))   # current best Nscale fit
 
 def _rep_thermo(L):
     t={5:'5',7:'7',9:'9'}.get(int(L),'7'); v=list(TH[t].values())

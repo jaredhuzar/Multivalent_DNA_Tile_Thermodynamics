@@ -20,7 +20,8 @@ import os; os.chdir(__REPO__)
 nb=nbformat.read("TmPredictor_NewTm.ipynb",as_version=4); G={"np":np,"pd":pd}
 exec(nb.cells[1].source,G); exec(nb.cells[2].source,G)
 R_CAL,C_TILE,EDGE,RLN,TH = G["R_CAL"],G["C_TILE"],G["EDGE"],G["RLN"],G["TH"]
-LAM,DS_INT,BASE,T = 139.82,-8.131,5.237,310.15
+_ci=pd.read_csv("Supplementary/TableS1_Model_Comparison_All/phenomenological_parameter_CIs.csv").set_index("parameter")["point_estimate"]
+LAM,DS_INT,BASE,T = float(_ci["lambda_nm"]),float(_ci["dS_Bond_cal_mol_K"]),float(_ci["dS_0_cal_mol_K"]),310.15   # current best Nscale fit
 SPACING=4.0
 v=list(TH['7'].values()); DH7=np.mean([x[0] for x in v]); DS7=np.mean([x[1] for x in v])
 

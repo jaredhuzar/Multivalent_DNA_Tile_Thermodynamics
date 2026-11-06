@@ -1,0 +1,4 @@
+parameter,point_estimate,jackknife_SE,bootstrap_SE,bootstrap_mean,boot_CI95_low,boot_CI95_high,n_constructs,n_bootstrap
+lambda_nm,90.3578,7.2763,7.4712,90.3201,77.472,106.5055,235,1000
+dS_Bond_cal_mol_K,-7.995,0.1801,0.1813,-7.9895,-8.3473,-7.6183,235,1000
+dS_0_cal_mol_K,4.8011,1.4158,1.3495,4.9181,2.1135,7.384,235,1000

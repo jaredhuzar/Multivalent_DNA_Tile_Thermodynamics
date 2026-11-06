@@ -43,9 +43,9 @@ only the sequence-predicted ΔG (α, EM, Fig 2a/2d backing data, Fig 6 features)
 measured Tm/ΔH/ΔS, the phenomenological model, or model/figure rankings.
 
 ## Figure 3 — Bond clustering  → `Figure3_BondClustering/`
-`Fig3a_Tm_vs_MeanGap_7nt_4bonds/` (3a) · `Fig3c_Tm_vs_BondPosition_ConstantSeq/` (3c) ·
-`Fig3d_RelativeOccupancy_vs_Distance/` (3d). Panel **3b** (Tm/g* OLS residuals) is the bond-span
-sub-panel of `../Supplementary/S3_OLS_Tm_geometry/` (same analysis as SI S3).
+`Fig3a_Tm_vs_MeanGap_7nt_4bonds/` (3a) · `Fig3b_Tm_vs_BondSpan_OLSResiduals/` (3b, Tm vs bond span g*
+with bond count/length/GC controlled — the span sub-panel of the SI S3 OLS, `make_fig3b.py`) ·
+`Fig3c_Tm_vs_BondPosition_ConstantSeq/` (3c) · `Fig3d_RelativeOccupancy_vs_Distance/` (3d).
 
 ## Figure 4 — Phenomenological model  → `Figure4_PhenomenologicalModel/`
 `Phenomenological_Model/` (pred-vs-exp, rank-rank) · `Theory_Scripts/` + `theory_*`, `EntropyPenalty_*`,
@@ -88,7 +88,7 @@ copying), then the standalone scripts below. Individually:
 | 2d | `python3 Figure2_NegativeCooperativity/Fig2d_ddG/regen_fig2d_ddg.py` (backing data); panel `test2_measured_only.svg` is measured-only |
 | 2e | `python3 Extras/Effective_Molarity/effective_molarity.py` then `Figure2…/Fig2e_Avidity/plot_avidity.py` |
 | 3a/3c/3d | `Tile_Tile_Master.ipynb` → `Figure3_BondClustering/<panel>/` |
-| 3b | bond-span sub-panel of `Supplementary/S3_OLS_Tm_geometry/` (`add_ols_and_meangap.py`) |
+| 3b | `python3 Figure3_BondClustering/Fig3b_Tm_vs_BondSpan_OLSResiduals/make_fig3b.py` (after `add_ols_and_meangap.py`) |
 | 3 ΔH/ΔS vs distance | `python3 Extras/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |
 | 4b | `TmPredictor_NewTm.ipynb` → `Figure4…/Phenomenological_Model/` |
 | 4c–4f | `python3 Figure4_PhenomenologicalModel/Theory_Scripts/*.py` |
