@@ -72,9 +72,9 @@ ag=pd.read_csv("Supplementary/Alpha_Geometry_Controlled/alpha_geometry_data.csv"
 if "code" not in ag.columns: ag["code"]=np.arange(len(ag))
 
 print("OLS regressions:")
-run_ols(cm, "Tm", "OLS_Tm_geometry", "Melting Temperature vs geometry", disp="Melting Temperature (°C)")
-run_ols(cm_dg, "Exp_dG", "OLS_dG_geometry", "Experimental Free Energy vs geometry", disp="Experimental Free Energy (kcal/mol)")
-run_ols(ag.rename(columns={"alpha_median":"alpha"}), "alpha", "OLS_alpha_geometry", "Avidity α vs geometry", disp="avidity α")
+run_ols(cm, "Tm", "S3_OLS_Tm_geometry", "Melting Temperature vs geometry", disp="Melting Temperature (°C)")
+run_ols(cm_dg, "Exp_dG", "S10_OLS_dG_geometry", "Experimental Free Energy vs geometry", disp="Experimental Free Energy (kcal/mol)")
+run_ols(ag.rename(columns={"alpha_median":"alpha"}), "alpha", "S2_OLS_alpha_geometry", "Avidity α vs geometry", disp="avidity α")
 
 # ===================== (B) dH / dS vs MEAN GAP, 7nt / 4-bond, high-confidence =====================
 hs=pd.read_csv("Filtered_DF_HS.csv"); hs["code"]=hs["Code"].astype(str).str.partition(".")[0]
@@ -87,7 +87,7 @@ g=(sub.groupby("code").agg(dH=("Enthalpy","median"),dS=("Entropy","median"),
                            Positions=("Positions","first"),n_reps=("Enthalpy","size")).reset_index())
 g["MeanGap_nm"]=g["Positions"].apply(meangap_nm)
 g=g.dropna(subset=["MeanGap_nm"]).reset_index(drop=True)
-O=out("HS_vs_MeanGap_7nt_4bonds")
+O=out("S4_HS_vs_MeanGap_7nt_4bonds")
 g[["code","dH","dS","MeanGap_nm","n_reps"]].to_csv(os.path.join(O,"data.csv"),index=False)
 fig,ax=plt.subplots(1,2,figsize=(12,4.8)); x=g.MeanGap_nm.values
 for a,(col,lab,u) in zip(ax,[("dH","Enthalpy","kcal/mol"),("dS","Entropy","cal/mol/K")]):
@@ -97,5 +97,5 @@ for a,(col,lab,u) in zip(ax,[("dH","Enthalpy","kcal/mol"),("dS","Entropy","cal/m
     a.set(xlabel="mean gap (nm)",ylabel=f"{lab} ({u})",
           title=f"{lab} vs mean gap (7nt, 4 bonds, high-conf, n={len(g)})\nSpearman ρ={rho:+.2f}, p={p:.2f}")
 plt.tight_layout(); plt.savefig(os.path.join(O,"figure.svg"),bbox_inches="tight"); plt.close()
-print(f"HS_vs_MeanGap_7nt_4bonds: n={len(g)}, gap {x.min():.1f}-{x.max():.1f} nm")
+print(f"S4_HS_vs_MeanGap_7nt_4bonds: n={len(g)}, gap {x.min():.1f}-{x.max():.1f} nm")
 print("  dH rho=%.3f  dS rho=%.3f"%(spearmanr(x,g.dH)[0],spearmanr(x,g.dS)[0]))

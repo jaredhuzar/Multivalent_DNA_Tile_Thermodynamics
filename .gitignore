@@ -2,5 +2,10 @@ __pycache__/
 *.pyc
 .DS_Store
 run_all.log
+# transient scratch dir for any unrouted notebook panels (real panels live in FigureN/ folders)
+Paper_Figures/
 # large raw MD trajectories are intentionally excluded (regenerate from sim notebooks)
 *.gsd
+
+# Jupyter checkpoint backups
+.ipynb_checkpoints/

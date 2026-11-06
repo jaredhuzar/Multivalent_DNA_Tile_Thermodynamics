@@ -26,7 +26,7 @@ PROJ=__REPO__; os.chdir(PROJ)
 OUT=os.path.join(PROJ,"Supplementary","Alpha_Geometry_Controlled")
 
 # ---- assemble alpha + geometry ----
-a=pd.read_csv("Figure2_NegativeCooperativity/Alpha_PerBond_Efficiency/alpha_per_interface.csv")
+a=pd.read_csv("Figure2_NegativeCooperativity/Fig2c_Alpha_PerBond_Efficiency/alpha_per_interface.csv")
 cm=pd.read_csv("Experimental_Trends/construct_medians.csv"); cm["code"]=cm["code"].astype(str).str.partition(".")[0]
 d=a.merge(cm[["code","span_nm","bond_len","GC","MeanGap_nm"]],on="code",how="left")
 d=d.rename(columns={"N_bonds":"Num_Bonds"})

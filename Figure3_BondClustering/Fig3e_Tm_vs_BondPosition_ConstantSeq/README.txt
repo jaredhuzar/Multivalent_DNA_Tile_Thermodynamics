@@ -1,1 +1,0 @@
-Fig 3e. Tm vs bond position (constant-seq series, expt 11_15). Source: authoritative Tm table.

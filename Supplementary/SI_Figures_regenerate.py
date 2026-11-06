@@ -46,10 +46,10 @@ for a,(nt,nbs,pal,lab) in zip(ax,[("5",[9,10],["#2ca25f","#d8721c"],"5nts"),
     s=sub[(sub.nt==nt)&(sub.Num_Bonds.isin(nbs))]
     sns.barplot(data=s,x="Num_Bonds",y="Steepness",ax=a,palette=pal,errorbar=("ci",95))
     a.set_title(lab,fontsize=14); a.set_xlabel("Num_Bonds"); a.set_ylabel("Steepness" if nt=="5" else "")
-plt.tight_layout(); plt.savefig(os.path.join(out("S2_BondLengthCount_Steepness"),"figure.svg"),bbox_inches="tight")
+plt.tight_layout(); plt.savefig(os.path.join(out("S9_BondLengthCount_Steepness"),"figure.svg"),bbox_inches="tight")
 plt.close()
 sub[["Code","nt","Num_Bonds","Steepness"]].rename(columns={"nt":"NucleotideBonds"}).to_csv(
-    os.path.join(out("S2_BondLengthCount_Steepness"),"data.csv"),index=False)
+    os.path.join(out("S9_BondLengthCount_Steepness"),"data.csv"),index=False)
 
 # ===================== S3 / S4: Bond Position (Entropy / Tm), 9nt EXCLUDED =====================
 def pos_table(m, col):
@@ -78,8 +78,8 @@ fig,axp=plt.subplots(figsize=(6.2,4.4))
 sns.barplot(data=s4,x="Bond Position",y="Tm",ax=axp,color="#2b7bba",errorbar=("ci",95))
 axp.axhline(s4[s4["Bond Position"]==5]["Tm"].mean(),color="red",ls="--",lw=2)
 axp.set_ylim(35,45); axp.set_ylabel("Melting Temperature"); axp.set_xlabel("Bond Position")
-plt.tight_layout(); plt.savefig(os.path.join(out("S4_BondPosition_Melting"),"figure.svg"),bbox_inches="tight"); plt.close()
-s4.rename(columns={"Tm":"Melting Temperature"}).to_csv(os.path.join(out("S4_BondPosition_Melting"),"data.csv"),index=False)
+plt.tight_layout(); plt.savefig(os.path.join(out("S8_BondPosition_Melting"),"figure.svg"),bbox_inches="tight"); plt.close()
+s4.rename(columns={"Tm":"Melting Temperature"}).to_csv(os.path.join(out("S8_BondPosition_Melting"),"data.csv"),index=False)
 
 # ===================== S5: Entropy vs bond length (5,7,9) =====================
 s5=mPhys[mPhys["nt"].isin(["5","7","9"])].copy()
@@ -87,9 +87,9 @@ s5["len"]=s5["nt"].astype(int)
 fig,axp=plt.subplots(figsize=(6.2,4.4))
 sns.barplot(data=s5,x="len",y="Entropy_kcal",ax=axp,color="#2b7bba",errorbar=("ci",95))
 axp.set_xlabel("Length of Bonds (nt)"); axp.set_ylabel("Entropy")
-plt.tight_layout(); plt.savefig(os.path.join(out("S5_BondLength_Entropy"),"figure.svg"),bbox_inches="tight"); plt.close()
+plt.tight_layout(); plt.savefig(os.path.join(out("S11_BondLength_Entropy"),"figure.svg"),bbox_inches="tight"); plt.close()
 s5[["Code","len","Entropy_kcal","Entropy"]].rename(columns={"len":"Length_nt"}).to_csv(
-    os.path.join(out("S5_BondLength_Entropy"),"data.csv"),index=False)
+    os.path.join(out("S11_BondLength_Entropy"),"data.csv"),index=False)
 
 # ===================== S7: NN-predicted Tm vs measured Tm =====================
 s7=mTm[~mTm["nt"].isin(["9"])].dropna(subset=["Predicted_tm","Tm"]).copy()
@@ -102,9 +102,9 @@ axp.plot(lim,lim,"k--",lw=1.2,label="y = x")
 axp.set(xlabel="Predicted Tm (°C, nearest-neighbor)",ylabel="Measured Tm (°C)",
         title=f"Spearman ρ={rho:.2f}, Pearson r={r:.2f}, n={len(s7)}")
 axp.legend(); plt.tight_layout()
-plt.savefig(os.path.join(out("S7_PredictedVsMeasured_Tm"),"figure.svg"),bbox_inches="tight"); plt.close()
+plt.savefig(os.path.join(out("S12_PredictedVsMeasured_Tm"),"figure.svg"),bbox_inches="tight"); plt.close()
 s7[["Code","nt","Num_Bonds","Predicted_tm","Tm"]].rename(columns={"nt":"NucleotideBonds"}).to_csv(
-    os.path.join(out("S7_PredictedVsMeasured_Tm"),"data.csv"),index=False)
+    os.path.join(out("S12_PredictedVsMeasured_Tm"),"data.csv"),index=False)
 
 print("S2 constructs:",len(sub),"| S3 rows:",len(s3),"| S4 rows:",len(s4))
 print("S5 by length:"); print(s5.groupby("len")["Entropy_kcal"].agg(["median","count"]))

@@ -1,0 +1,1 @@
+Fig 3e. Tm vs geometric bond position: a constant-sequence bond is moved away from a fixed bond pair; position = signed # of empty sites between them (0 = adjacent). Source: authoritative Tm table, expt 11_15.

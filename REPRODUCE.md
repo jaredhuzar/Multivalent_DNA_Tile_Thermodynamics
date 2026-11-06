@@ -40,23 +40,23 @@ Each script auto-detects the repo root and writes into its own folder, so run it
 
 | panel | command / source |
 |---|---|
-| Fig 2a | `Tile_Tile_Master.ipynb` → `Figure2_NegativeCooperativity/NNdG_ExpdG_saltfixed/` |
+| Fig 2a | `Tile_Tile_Master.ipynb` → `Figure2_NegativeCooperativity/Fig2a_NNdG_ExpdG_saltfixed/` |
 | Fig 2b | filter `Filtered_DF_Tm.csv` (`NucleotideBonds`, `Num_Bonds`) |
-| Fig 2c | `python3 Figure2_NegativeCooperativity/Alpha_PerBond_Efficiency/compute_alpha.py` |
+| Fig 2c | `python3 Figure2_NegativeCooperativity/Fig2c_Alpha_PerBond_Efficiency/compute_alpha.py` |
 | Fig 2d | `Tile_Tile_Master.ipynb` → `Figure2_NegativeCooperativity/Fig2d_ddG/` |
-| Fig 2e | `python3 Figure2_NegativeCooperativity/Effective_Molarity/effective_molarity.py` then `.../Avidity/plot_avidity.py` |
+| Fig 2e | `python3 Extras/Effective_Molarity/effective_molarity.py` then `.../Avidity/plot_avidity.py` |
 | Fig 3b/3c/3e | `Tile_Tile_Master.ipynb` → `Figure3_BondClustering/<panel>/` |
-| Fig 3 ΔH/ΔS | `python3 Figure3_BondClustering/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |
+| Fig 3 ΔH/ΔS | `python3 Extras/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |
 | Fig 4b | `TmPredictor_NewTm.ipynb` → `Figure4_PhenomenologicalModel/Phenomenological_Model/` |
 | Fig 4c–4f | `python3 Figure4_PhenomenologicalModel/Theory_Scripts/*.py` |
 | Fig 5 | `Figure5_MD_Simulations/simulation_notebooks/*.ipynb`; panels in `figure_panels/` (E–H binder-position data in `figure_panels/mechanism_EFGH/`) |
 | Fig 6b/6c/6d | `Tile_Tile_Master.ipynb` (XGBoost cells) → `Figure6_MachineLearning/` |
-| Fig 6e | `python3 Figure6_MachineLearning/Fig6e_SHAP_Values/recompute_shap_fulltrain.py` |
+| Fig 6e | `python3 Supplementary/S6_SHAP_Values/recompute_shap_fulltrain.py` |
 | SI S2/S3/S10 | `python3 Supplementary/Alpha_Geometry_Controlled/alpha_geometry_ols.py`; `python3 Supplementary/add_ols_and_meangap.py` |
-| SI S4 | `python3 Figure3_BondClustering/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py`; `.../add_ols_and_meangap.py` |
+| SI S4 | `python3 Extras/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py`; `.../add_ols_and_meangap.py` |
 | SI S7 | oxDNA tile RMSF — analysis not included (external oxDNA trajectory) |
 | SI S8/S9/S11/S12 | `python3 Supplementary/SI_Figures_regenerate.py` |
-| Tested-models table | `python3 Supplementary/Model_Comparison_All/models_and_pdf.py` then `pdf_report.py` |
+| Tested-models table | `python3 Supplementary/TableS1_Model_Comparison_All/models_and_pdf.py` then `pdf_report.py` |
 
 ## 5. Verify you got it right
 Key values the regenerated data should reproduce:
