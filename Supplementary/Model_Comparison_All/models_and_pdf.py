@@ -17,7 +17,7 @@ os.chdir(__REPO__)
 OUT="Supplementary/Model_Comparison_All"
 
 # ---- constants / NN thermo / TH ----
-R_CAL=1.98720425864; C_TILE=4.5e-9; EDGE=88.0; RLN=R_CAL*np.log(C_TILE/2.0)
+R_CAL=1.98720425864; C_TILE=4.5e-9; EDGE=60.0; RLN=R_CAL*np.log(C_TILE/2.0)
 ELL_P_SS,RISE_SS=1.0,0.63; NA=6.02214076e23; C0_nm3=1e-24*NA; T=310.15
 NN_dH={'AA':-7.6,'AT':-7.2,'AC':-8.4,'AG':-7.8,'TA':-7.2,'TT':-7.6,'TC':-8.2,'TG':-8.5,'CA':-8.5,'CT':-7.8,'CC':-8.0,'CG':-10.6,'GA':-8.2,'GT':-8.4,'GC':-9.8,'GG':-8.0}
 NN_dS={'AA':-22.2,'AT':-20.4,'AC':-22.4,'AG':-21.0,'TA':-21.3,'TT':-22.2,'TC':-22.2,'TG':-22.7,'CA':-22.7,'CT':-21.0,'CC':-19.9,'CG':-27.2,'GA':-22.2,'GT':-22.4,'GC':-24.4,'GG':-19.9}

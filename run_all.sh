@@ -9,6 +9,8 @@ run(){
   if python3 "$1" >>"$LOG" 2>&1; then echo "OK"; pass=$((pass+1));
   else echo "FAIL"; fail=$((fail+1)); failed+=("$1"); fi
 }
+echo "Renegerate Tables"
+jupyter execute Tile_Tile_MasterRegenerate.ipynb
 echo "=== Figure 2 ==="
 run Figure2_NegativeCooperativity/NNdG_ExpdG_saltfixed/regen_nndg_vs_exp.py
 run Figure2_NegativeCooperativity/Fig2d_ddG/regen_fig2d_ddg.py
