@@ -47,6 +47,8 @@ run Supplementary/SI_Figures_regenerate.py
 run Supplementary/TableS1_Model_Comparison_All/models_and_pdf.py
 run Supplementary/TableS1_Model_Comparison_All/pdf_report.py
 run Supplementary/TableS1_Model_Comparison_All/make_table_docx.py
+echo "=== Figure_Source_Data: exact plotted points per panel ==="
+run Figure_Source_Data/make_figure_points.py
 echo "-------------------------------------"
 echo "PASS=$pass FAIL=$fail"
 [ $fail -gt 0 ] && { printf 'FAILED: %s\n' "${failed[@]}"; exit 1; }
