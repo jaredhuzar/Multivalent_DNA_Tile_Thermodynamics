@@ -42,6 +42,11 @@ in the notebook (`saltCorrection`), the α/EM scripts, and the per-interface tab
 only the sequence-predicted ΔG (α, EM, Fig 2a/2d backing data, Fig 6 features); it does not touch any
 measured Tm/ΔH/ΔS, the phenomenological model, or model/figure rankings.
 
+**Melting-curve van't Hoff (tile concentration).** The bimolecular K uses the **total** strand concentration
+`C_T = 9 nM` (each tile 4.5 nM in the well): `K = 2θ/[(1−θ)²·C_T]` and `Tm = ΔH°/[ΔS° + R ln(C_T/4)]`
+(equivalently `R ln(c/2)` with per-tile `c = 4.5 nM`). This sets the absolute ΔS°/ΔG° (and α, EM/avidity,
+Predicted_tm); it does **not** affect the melt-fit Tm or the phenomenological model (fit to Tm). Fitted `ΔS₀ = 4.80`.
+
 ## Figure 3 — Bond clustering  → `Figure3_BondClustering/`
 `Fig3a_Tm_vs_MeanGap_7nt_4bonds/` (3a) · `Fig3b_Tm_vs_BondSpan_OLSResiduals/` (3b, Tm vs bond span g*
 with bond count/length/GC controlled — the span sub-panel of the SI S3 OLS, `make_fig3b.py`) ·
@@ -52,8 +57,13 @@ with bond count/length/GC controlled — the span sub-panel of the SI S3 OLS, `m
 `Theoretical*` curves · model fit: `../TmPredictor_NewTm.ipynb`. Model comparison: `../Supplementary/TableS1_Model_Comparison_All/`.
 
 ## Figure 5 — Coarse-grained MD  → `Figure5_MD_Simulations/`
-(Panels E–H binder-position data — tip-gap/anchor 4×4 matrices + per-frame swarm — are in `figure_panels/mechanism_EFGH/`.)
-`simulation_notebooks/` (24 HOOMD notebooks) · `figure_panels/` (b–h) · `processed_data_npz/` (291 runs).
+**Canonical self-contained path: `Figure_AH_SelfContained/` → `plots_robust_v2/{b–f, f_matched}` (Tm panels)
+and `plots_robust/mechanism/` (E–H: tip-gap/registration/heatmaps).** `plots_robust_v2/` is mirrored to
+`Figure5_MD_Simulations/plots_robust_v2/` and `../Figure_Source_Data/plots_robust_v2/`. Regenerate with
+`Figure_AH_SelfContained/Analysis_Tm_trends.ipynb`; the simulated Tm is read where ⟨bonds⟩ crosses **n_max/2**
+(1.0 for 2-bond, 1.5 for 3-bond). Panel b (Fig 5B, 3-bond spacing) uses the **center series only** (edge
+variants excluded); `f` is the raw valency panel and `f_matched` the spacing-matched one.
+`simulation_notebooks/` (24 HOOMD notebooks) · `processed_data_npz/` (291 runs) · legacy `figure_panels/`.
 
 ## Figure 6 — Machine learning  → `Figure6_MachineLearning/`
 `Fig6b_XGBoost_StabilityScatter/` (6b, Exp vs pred Tm) · `Fig6c_XGBoost_RankRank/` (6c, rank–rank) ·
@@ -75,13 +85,16 @@ Panels/analyses kept for reference but not in the manuscript: `PredicteddG_vs_Tm
 `ReproducibleTm_UnphysicalHS/`, `Cooperativity_Tests_source/`.
 
 ## Reproducing each panel
-`bash run_all.sh` regenerates **everything from scratch, self-contained** (verified: 21/21 pass): it runs
+`bash run_all.sh` regenerates **everything from scratch, self-contained** (verified: 26/26 pass): it runs
 `Tile_Tile_MasterRegenerate.ipynb` (→ `Filtered_DF_*` tables), then `Tile_Tile_Master.ipynb` (→ the
 notebook panels Fig 2a/2b/2d, 3a/3c/3d, 6b/6c/6d, written directly into their `FigureN/` folders — no
-copying), then the standalone scripts below. Individually:
+copying), then the standalone scripts below (including Fig 1C melting curves and the Figure_Source_Data
+exact-points export). The Fig 5 MD panels are regenerated separately from
+`Figure5_MD_Simulations/Figure_AH_SelfContained/Analysis_Tm_trends.ipynb` (not in run_all). Individually:
 
 | panel | how to generate |
 |---|---|
+| 1C | `python3 Figure1_Platform_AFM/make_melting_curves.py` (fitted melting curves + raw data CSV) |
 | 2a | `python3 Figure2_NegativeCooperativity/Fig2a_NNdG_ExpdG_saltfixed/regen_nndg_vs_exp.py` |
 | 2b | filter `Filtered_DF_Tm.csv` by `NucleotideBonds` & `Num_Bonds` (7nt 4/5, 5nt 9/10) |
 | 2c | `python3 Figure2_NegativeCooperativity/Fig2c_Alpha_PerBond_Efficiency/compute_alpha.py` |
@@ -92,7 +105,7 @@ copying), then the standalone scripts below. Individually:
 | 3 ΔH/ΔS vs distance | `python3 Extras/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |
 | 4b | `TmPredictor_NewTm.ipynb` → `Figure4…/Phenomenological_Model/` |
 | 4c–4f | `python3 Figure4_PhenomenologicalModel/Theory_Scripts/*.py` |
-| 5 | `Figure5_MD_Simulations/simulation_notebooks/*.ipynb` (plots in `figure_panels/`) |
+| 5 (b–h) | `Figure5_MD_Simulations/Figure_AH_SelfContained/Analysis_Tm_trends.ipynb` → `plots_robust_v2/` (Tm=n_max/2 crossing; 5B center-only) |
 | 6b/6c/6d | `Tile_Tile_Master.ipynb` (XGBoost cells) → `Figure6…/` |
 | 6e | `python3 Supplementary/S6_SHAP_Values/recompute_shap_fulltrain.py` |
 | S2 | `python3 Supplementary/Alpha_Geometry_Controlled/alpha_geometry_ols.py`, `…/add_ols_and_meangap.py` |
