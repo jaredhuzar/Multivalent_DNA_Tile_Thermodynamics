@@ -18,7 +18,7 @@ Fig4c_MeltingCurves_vs_NumBonds.csv  n=22    THEORY: predicted melt (Tm, theta@4
 Fig4d_Decomp_vs_NumBonds.csv         n=22    THEORY: free-energy decomposition vs number of bonds
 Fig4e_MeltingCurves_vs_Spacing.csv   n=10    THEORY: predicted melt (Tm, theta@40C) vs bond spacing
 Fig4f_Decomp_vs_Spacing.csv          n=50    THEORY: free-energy decomposition vs bond spacing
-Fig5b_Tm_vs_BondSpacing.csv          n=24    MD: simulated Tm (kT) vs bond spacing; flexible vs rigid scaffold
+Fig5b_Tm_vs_BondSpacing.csv          n=12    MD: simulated Tm (kT) vs bond spacing; flexible vs rigid scaffold
 Fig5c_Tm_vs_LinkerRigidity.csv       n=22    MD: simulated Tm (kT) vs linker rigidity; bond spacings 2 & 6 (rigid scaffold rod80)
 Fig5e_Tm_vs_ScaffoldRigidity.csv     n=8     MD: simulated Tm (kT) vs scaffold rigidity (rod 4/20/80/240); bond spacings 2 & 6
 Fig5d_BinderDistance_byLinker.csv    n=1028  MD: binder (tip-tip) distance per linker bending stiffness 4/10/20/40 (kT=2 swarm)

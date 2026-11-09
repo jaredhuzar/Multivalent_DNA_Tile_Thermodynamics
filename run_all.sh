@@ -21,6 +21,8 @@ echo "=== Authoritative construct table (Tm/dG from Filtered_DF; source for the 
 run Experimental_Trends/build_construct_medians.py
 echo "=== Notebook figure panels -> Fig2a/2b/2d, 3b/3c/3e, 6b/6c/6d ==="
 run_nb Tile_Tile_Master.ipynb
+echo "=== Figure 1C: fitted melting curves (svg + raw data) ==="
+run Figure1_Platform_AFM/make_melting_curves.py
 echo "=== Figure 2 ==="
 run Figure2_NegativeCooperativity/Fig2a_NNdG_ExpdG_saltfixed/regen_nndg_vs_exp.py
 run Figure2_NegativeCooperativity/Fig2d_ddG/regen_fig2d_ddg.py

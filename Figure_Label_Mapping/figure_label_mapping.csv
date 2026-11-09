@@ -1,0 +1,38 @@
+kind,repo_label,content,final_label,status
+main,Figure1 AFM,tile dimers (AFM),Fig 1B,ok
+main,Figure1 Melting Curves.svg / Fig1C_MeltingCurves.csv,fitted melting curves,Fig 1C,ok
+main,Fig2a_NNdG_ExpdG_saltfixed,NN-predicted vs measured dG,Fig 2A/2B,ok
+main,Fig2b_Tm_vs_BindingSites_x_Length,Tm by sites x length,Fig 2C,mismatch
+main,Fig2c_Alpha_PerBond_Efficiency,cooperativity alpha,Fig 2D,mismatch
+main,Fig2d_ddG,ddG of adding one site,Fig 2E,mismatch
+main,Fig2e_Avidity,avidity enhancement,Fig 2F,mismatch
+main,Fig3a_Tm_vs_MeanGap_7nt_4bonds,Tm vs mean gap,Fig 3A,ok
+main,Fig3c_Tm_vs_BondPosition_ConstantSeq,Tm vs bond position,Fig 3D,mismatch
+main,Fig3d_RelativeOccupancy_vs_Distance,inferred occupancy vs distance,Fig 3E/3G,mismatch
+main,Fig3b_Tm_vs_BondSpan_OLSResiduals,Tm vs bond span (covariates out),Fig 3F,mismatch
+main,Phenomenological_Model/pred_vs_exp,predicted vs measured Tm (OOF),Fig 4B,ok
+main,EntropyPenalty_vs_NumBonds_spacing4.csv,net dG37 vs bond number,Fig 4C,mismatch
+main,theory_vs_spacing.csv,Tm vs spacing,Fig 4D,mismatch
+main,theory_vs_Nbonds.csv,Tm vs bond number (+plateau),Fig 4E/4G,mismatch
+main,EntropyPenalty_vs_Spacing_4bonds.csv,dG decomposition vs spacing,Fig 4F,verify
+main,plots_robust_v2/b (Fig5b),Tm vs spacing,Fig 5B,ok
+main,plots_robust_v2/d (Fig5c),Tm vs linker stiffness,Fig 5C,ok
+main,plots_robust_v2/c (Fig5e),Tm vs scaffold rigidity,Fig 5D,mismatch
+main,mechanism panelC (Fig5d),tip-tip distance by linker,Fig 5E,mismatch
+main,registration (Fig5f),tether spread vs scaffold,Fig 5F,ok
+main,heatmap_grid (Fig5g/Fig5h),tip-gap mean/spread heatmaps,Fig 5G/5H,ok
+main,Fig6b_XGBoost_StabilityScatter,XGBoost predicted vs measured,Fig 6B,ok
+main,Fig6d_ModelComparison_SpearmanRho,per-model Spearman rho,Fig 6C,mismatch
+main,S6_SHAP_Values (main copy),SHAP per site,Fig 6D,mismatch
+main,Fig6c_XGBoost_RankRank,rank-rank,no main panel,verify
+si,S11_BondLength_Entropy,entropic penalty by bond length,Fig S1,mismatch
+si,S9_BondLengthCount_Steepness,width dx of melting transition,Fig S5,verify
+si,S12_PredictedVsMeasured_Tm,NN predicted vs measured Tm,Fig S7,mismatch
+si,S2_OLS_alpha_geometry,OLS of alpha,Fig S8,mismatch
+si,S3_OLS_Tm_geometry,OLS of Tm,Fig S9,mismatch
+si,S4_HS_vs_MeanGap_7nt_4bonds,dH/dS vs mean gap,Fig S10,mismatch
+si,S6_SHAP_Values,SHAP values,Fig S12,mismatch
+si,S8_BondPosition_Melting,Tm by occupied site,Fig S13,mismatch
+si,S10_OLS_dG_geometry,OLS of dG37,Fig S15,mismatch
+si,S3_BondPosition_Entropy,bond position entropy,none (deprecated?),verify
+table,TableS1_Model_Comparison_All,models tested + CV,Table S1,ok
