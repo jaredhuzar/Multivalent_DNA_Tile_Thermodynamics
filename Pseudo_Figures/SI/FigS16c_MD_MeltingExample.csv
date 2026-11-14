@@ -1,0 +1,15 @@
+series,stem,spacing,temperature_kT,mean_bonds,sd_over_seeds,n_seeds,Tm_kT
+Flexible scaffold,FlexScaffold3bonds,3,0.5,2.9989,0.0016,3,1.5553
+Flexible scaffold,FlexScaffold3bonds,3,0.75,2.9733,0.0,3,1.5553
+Flexible scaffold,FlexScaffold3bonds,3,1.0,2.8467,0.0119,3,1.5553
+Flexible scaffold,FlexScaffold3bonds,3,1.25,2.4433,0.1418,3,1.5553
+Flexible scaffold,FlexScaffold3bonds,3,1.5,1.6522,0.2962,3,1.5553
+Flexible scaffold,FlexScaffold3bonds,3,1.75,0.9644,0.4088,3,1.5553
+Flexible scaffold,FlexScaffold3bonds,3,2.0,0.58,0.2192,3,1.5553
+Rigid scaffold,RigidScaffold3bonds,3,0.5,2.9978,0.0016,3,1.6115
+Rigid scaffold,RigidScaffold3bonds,3,0.75,2.9756,0.0096,3,1.6115
+Rigid scaffold,RigidScaffold3bonds,3,1.0,2.8489,0.0257,3,1.6115
+Rigid scaffold,RigidScaffold3bonds,3,1.25,2.2833,0.408,3,1.6115
+Rigid scaffold,RigidScaffold3bonds,3,1.5,1.73,0.2865,3,1.6115
+Rigid scaffold,RigidScaffold3bonds,3,1.75,1.2144,0.3017,3,1.6115
+Rigid scaffold,RigidScaffold3bonds,3,2.0,0.8344,0.1426,3,1.6115

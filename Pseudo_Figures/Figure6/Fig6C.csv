@@ -1,0 +1,6 @@
+Model,OOF_Rho,Mean_Fold_Rho,Std_Fold_Rho,OOF_RMS_C,n
+Multivalent model (Fig. 4),0.9345,0.9236,0.0518,1.3366,236
+XGBoost,0.9024,0.8955,0.0748,1.7184,236
+Random forest,0.8426,0.8448,0.061,2.1037,236
+Quadratic regression,0.8094,0.8103,0.1041,2.9776,236
+Linear regression,0.6594,0.6812,0.0966,3.253,236

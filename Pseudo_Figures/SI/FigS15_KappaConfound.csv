@@ -1,0 +1,4 @@
+model,n_params,cvRMS,cvrho,kappa,phi5
+valency term κ (Fig. 4 model),3,1.3366,0.9345,0.0791,1.0
+"separate 5-/6-nt C_eff, no κ",4,1.3416,0.935,0.0,0.5854
+both,5,1.3409,0.9348,0.0408,0.75
