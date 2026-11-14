@@ -24,7 +24,18 @@ Figures not in the numbered list are in `Extra/`.
 | S16c | Simulated melting example: mean bonds formed vs temperature (3 bonds, spacing 3) | `FigS16c_MD_MeltingExample.svg` | `FigS16c_MD_MeltingExample.csv` | `Figure5_MD_Simulations/Figure_AH_SelfContained/plots_robust/mechanism_panels/melting_example/panel_melting_example.svg` |
 | S17a | SHAP values for XGBoost (all 236 interfaces) | `FigS17a_SHAP_Beeswarm.svg` | `FigS17a_SHAP_Beeswarm.csv` | `Supplementary/S6_SHAP_Values/figure.svg` |
 | S17b | Mean SHAP value at each site, occupied vs empty | `FigS17b_SHAP_MeanBySite.svg` | `FigS17b_SHAP_MeanBySite.csv` | `Supplementary/S6_SHAP_Values/mean_shap_by_site.svg` |
-| S18 | RMSF of the tile (oxDNA monomer) | `FigS18_RMSF_Tile.svg` | `FigS18_RMSF_Tile.csv` | `Supplementary/oxDNA/rmsf_tile.svg` |
+
+
+## Not Present (Greg has these or made these)/
+
+| New Figure | Description | Old Figure |
+|---|---|---|
+| S1 | Screenshot of ScadNano | S2 |
+| S2 | Schematic of example interface | S3 |
+| S3 | Schematic of FRET reporter | S4 |
+| S5 | AFM Images | S7 |
+| S18 | RMSF of monomer tile | S15 |
+
 
 ## Extra/
 
