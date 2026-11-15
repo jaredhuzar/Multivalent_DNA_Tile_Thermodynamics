@@ -1,0 +1,8 @@
+model,parameter,units,estimate,SE_a,SE_b,CI,meaning
+Multivalent (Fig. 4),C_ref,mM,26.722064011925198,log10 SE 0.042 (GN),log10 SE 0.037,22.0 – 31.3,effective concentration of a bond at zero distance in a four-site interface
+Multivalent (Fig. 4),λ,nm,12.77431,0.694 (GN),0.645,11.8 – 14.3,decay length of the effective concentration with mean distance
+Multivalent (Fig. 4),κ,per site,0.0791,0.00845 (GN),0.00717,0.0652 – 0.0924,fractional loss of effective concentration per occupied site
+Multivalent (Fig. 4),w,,0.57,fixed,fixed,—,"FRET readout weight, set from transition widths (Fig. 2, SI)"
+Two-state A2 (SI),λ,nm,90.0897,4.34 (jackknife),4.25,82.6 – 99.1,decay length of the two-state weight g = e^(−d/λ)
+Two-state A2 (SI),ΔS_Bond,cal mol⁻¹ K⁻¹,-8.3822,0.123 (jackknife),0.122,-8.63 – -8.14,per-bond entropy (≈ R ln C_eff)
+Two-state A2 (SI),ΔS_0,cal mol⁻¹ K⁻¹,7.3108,0.839 (jackknife),0.836,5.69 – 8.87,dimerization entropy offset

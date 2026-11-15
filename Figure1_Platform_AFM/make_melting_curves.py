@@ -35,12 +35,12 @@ tm = pd.read_csv("Filtered_DF_Tm.csv"); tm["code"] = tm["Code"].astype(str).str.
 med = tm.groupby("code").agg(A1=("A1","median"), A2=("A2","median"),
                              Tm=("Tm","median"), dx=("dx","median")).reset_index()
 
-x_fit = np.linspace(26, 55, 500)
+x_fit = np.linspace(26, 60, 500)
 plt.figure(figsize=(6, 6))
 rows = []
 for _, r in med.iterrows():
     A1, A2, Tm, dx = r["A1"], r["A2"], r["Tm"], r["dx"]
-    if dx < 1 or Tm < 30 or Tm > 50 or A1 > 1:        # original selection
+    if dx < 1 or Tm < 30 or Tm > 58 or A1 > 1:        # include high-Tm (>50 C) curves (was dropping ~10)
         continue
     y = boltzmann(x_fit, A1, A2, Tm, dx)
     fU = (y - A1) / (A2 - A1)                          # normalized signal
@@ -48,7 +48,7 @@ for _, r in med.iterrows():
     for T, f in zip(x_fit, fU):
         rows.append((r["code"], round(float(Tm), 4), round(float(dx), 4),
                      round(float(T), 4), round(float(f), 6)))
-plt.xlim(25, 55); plt.ylim(-0.05, 1.05)
+plt.xlim(25, 60); plt.ylim(-0.05, 1.05)
 plt.xlabel("Temperature (°C)"); plt.ylabel("Normalized Signal")
 plt.title("Fitted Melting Curves"); plt.tight_layout()
 plt.savefig(os.path.join(OUT, "Melting Curves.svg"))

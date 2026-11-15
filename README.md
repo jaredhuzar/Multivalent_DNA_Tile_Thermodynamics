@@ -14,7 +14,7 @@ Thermodynamics* (main text + SI, 11/1/2026). **Data and code are organized one f
   `Tile_TileResultsKey*.csv`, and the notebooks `Tile_Tile_Master.ipynb`, `TmPredictor_NewTm.ipynb`
   (outputs stripped).
 - **One folder per figure:** `Figure1_Platform_AFM/`, `Figure2_NegativeCooperativity/`,
-  `Figure3_BondClustering/`, `Figure4_PhenomenologicalModel/`, `Figure5_MD_Simulations/`,
+  `Figure3_BondClustering/`, `Figure4_MultivalentModel/`, `Figure5_MD_Simulations/`,
   `Figure6_MachineLearning/`, and `Supplementary/`. Each panel subfolder holds its `data.csv`,
   `figure.svg`, a `README`, and the script that makes it.
 
@@ -23,7 +23,7 @@ Scripts auto-detect the repo root (they locate `Filtered_DF_Tm.csv`) and write b
 folder, so run any of them from anywhere:
 ```
 python3 Figure2_NegativeCooperativity/Fig2c_Alpha_PerBond_Efficiency/compute_alpha.py
-python3 Figure4_PhenomenologicalModel/Theory_Scripts/entropy_penalty_vs_spacing.py
+python3 Figure4_MultivalentModel/fit_model.py && python3 Figure4_MultivalentModel/make_figure4.py
 python3 Supplementary/add_ols_and_meangap.py
 ```
 Deps: python3 + numpy, pandas, scipy, scikit-learn, matplotlib, seaborn, xgboost, shap, nbformat, openpyxl.
@@ -47,14 +47,24 @@ measured Tm/ΔH/ΔS, the phenomenological model, or model/figure rankings.
 (equivalently `R ln(c/2)` with per-tile `c = 4.5 nM`). This sets the absolute ΔS°/ΔG° (and α, EM/avidity,
 Predicted_tm); it does **not** affect the melt-fit Tm or the phenomenological model (fit to Tm). Fitted `ΔS₀ = 4.80`.
 
+**QC as actually implemented (read before citing the gates).** `fit_Not_Normalized` fits an *unbounded*
+Boltzmann, so a few curves collapse to a near-step (`dx → 0`, `Tm_SE = inf`). The construct-level `plateau_confident`
+= 'high' flag checks **only** that every replicate has both plateaus sampled (`Plateau_OK.all()`); it does **not**
+apply the per-curve `SE ≤ 1.0 °C` rule (the per-curve `Confidence` column that encodes it is saved but unused), and
+the 235-construct set gates on the per-construct **median** SE (≤ 1.5 °C), not per curve. So `Filtered_DF_Tm_high`
+can contain high-SE/degenerate rows. Per-construct Tm shifts from applying the stricter documented rules are mostly
+< 0.5 °C (up to ~2.8 °C for one construct). Salt (NN) uses the von Ahsen monovalent-equivalent `[Na⁺]_eq = 3.79·√[Mg²⁺]`.
+
 ## Figure 3 — Bond clustering  → `Figure3_BondClustering/`
 `Fig3a_Tm_vs_MeanGap_7nt_4bonds/` (3a) · `Fig3b_Tm_vs_BondSpan_OLSResiduals/` (3b, Tm vs bond span g*
 with bond count/length/GC controlled — the span sub-panel of the SI S3 OLS, `make_fig3b.py`) ·
 `Fig3c_Tm_vs_BondPosition_ConstantSeq/` (3c) · `Fig3d_RelativeOccupancy_vs_Distance/` (3d).
 
-## Figure 4 — Phenomenological model  → `Figure4_PhenomenologicalModel/`
-`Phenomenological_Model/` (pred-vs-exp, rank-rank) · `Theory_Scripts/` + `theory_*`, `EntropyPenalty_*`,
-`Theoretical*` curves · model fit: `../TmPredictor_NewTm.ipynb`. Model comparison: `../Supplementary/TableS1_Model_Comparison_All/`.
+## Figure 4 — Multivalent binding model  → `Figure4_MultivalentModel/`
+`mv_model.py` (model) · `fit_model.py` → `model_fit/` (10-fold CV, nested variants, bootstrap CIs) · `make_figure4.py` →
+`figure.svg` + `theory/` (Tm vs sites, Tm vs spacing, melt curves, occupancy, design map). See its README.
+The former Figure 4 (phenomenological model A2) is in `Supplementary/SI_PhenomenologicalModel_A2/`; model comparison:
+`Supplementary/TableS1_Model_Comparison_All/`.
 
 ## Figure 5 — Coarse-grained MD  → `Figure5_MD_Simulations/`
 **Canonical self-contained path: `Figure_AH_SelfContained/` → `plots_robust_v2/{b–f, f_matched}` (Tm panels)
@@ -66,8 +76,10 @@ variants excluded); `f` is the raw valency panel and `f_matched` the spacing-mat
 `simulation_notebooks/` (24 HOOMD notebooks) · `processed_data_npz/` (291 runs) · legacy `figure_panels/`.
 
 ## Figure 6 — Machine learning  → `Figure6_MachineLearning/`
-`Fig6b_XGBoost_StabilityScatter/` (6b, Exp vs pred Tm) · `Fig6c_XGBoost_RankRank/` (6c, rank–rank) ·
-`Fig6d_ModelComparison_SpearmanRho/` (6d). Features: `../Tile_Tile_Master.ipynb`.
+`make_figure6.py` (updated 2026-11-12: comparator = multivalent model of Fig 4) writes manuscript 6B →
+`Fig6b_XGBoost_StabilityScatter/`, 6C → `Fig6d_ModelComparison_SpearmanRho/`, 6E → `Fig6e_EdgeSites_Spacing/`, and
+`figure6_combined.svg`; 6D (SHAP) → `Supplementary/S6_SHAP_Values/`. `Fig6c_XGBoost_RankRank/` (rank–rank, not in the
+manuscript) still comes from `../Tile_Tile_Master.ipynb`. See `Figure6_MachineLearning/README.txt`.
 (SHAP is **SI Fig S6**, in `../Supplementary/S6_SHAP_Values/`.)
 
 ## Supplementary (11/1 numbering)  → `Supplementary/`
@@ -103,11 +115,12 @@ exact-points export). The Fig 5 MD panels are regenerated separately from
 | 3a/3c/3d | `Tile_Tile_Master.ipynb` → `Figure3_BondClustering/<panel>/` |
 | 3b | `python3 Figure3_BondClustering/Fig3b_Tm_vs_BondSpan_OLSResiduals/make_fig3b.py` (after `add_ols_and_meangap.py`) |
 | 3 ΔH/ΔS vs distance | `python3 Extras/HS_vs_Distance_7nt_4bonds/hs_vs_distance.py` |
-| 4b | `TmPredictor_NewTm.ipynb` → `Figure4…/Phenomenological_Model/` |
-| 4c–4f | `python3 Figure4_PhenomenologicalModel/Theory_Scripts/*.py` |
+| 4b–4c | `Figure4_MultivalentModel/fit_model.py` → `model_fit/` |
+| 4 (all) | `Figure4_MultivalentModel/make_figure4.py` → `figure.svg`, `theory/` |
+| SI A2 (former 4) | `TmPredictor_NewTm.ipynb` + `Supplementary/SI_PhenomenologicalModel_A2/Theory_Scripts/*.py` |
 | 5 (b–h) | `Figure5_MD_Simulations/Figure_AH_SelfContained/Analysis_Tm_trends.ipynb` → `plots_robust_v2/` (Tm=n_max/2 crossing; 5B center-only) |
-| 6b/6c/6d | `Tile_Tile_Master.ipynb` (XGBoost cells) → `Figure6…/` |
-| 6e | `python3 Supplementary/S6_SHAP_Values/recompute_shap_fulltrain.py` |
+| 6B, 6C, 6E | `python3 Figure6_MachineLearning/make_figure6.py` (after Fig 4 fit) |
+| 6D (SHAP) | `python3 Supplementary/S6_SHAP_Values/recompute_shap_fulltrain.py` |
 | S2 | `python3 Supplementary/Alpha_Geometry_Controlled/alpha_geometry_ols.py`, `…/add_ols_and_meangap.py` |
 | construct table | `python3 Experimental_Trends/build_construct_medians.py` (Tm/dG from `Filtered_DF`; run before the OLS below) |
 | S3, S10 | `python3 Supplementary/add_ols_and_meangap.py` (→ S3_OLS_Tm_geometry, S10_OLS_dG_geometry) |
@@ -115,6 +128,6 @@ exact-points export). The Fig 5 MD panels are regenerated separately from
 | S6 | `python3 Supplementary/S6_SHAP_Values/recompute_shap_fulltrain.py` |
 | S7 | oxDNA tile RMSF — not included (external oxDNA trajectory) |
 | S8, S9, S11, S12 | `python3 Supplementary/SI_Figures_regenerate.py` |
-| tested-models table | `python3 Supplementary/TableS1_Model_Comparison_All/models_and_pdf.py` then `pdf_report.py` |
+| tested-models table | `python3 Supplementary/TableS1_Model_Comparison_All/unified_models.py` then `pdf_report.py` then `make_table_docx.py` |
 
 Install deps with `pip install -r requirements.txt`.

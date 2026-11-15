@@ -82,7 +82,7 @@ sub=hs[(hs.NucleotideBonds.astype(str)=="7")&(hs.Num_Bonds==4)&(hs.Reliable==Tru
 def meangap_nm(posstr):
     p=sorted(ast.literal_eval(posstr) if isinstance(posstr,str) else list(posstr))
     if len(p)<2: return np.nan
-    span=p[-1]-p[0]; return (span/(len(p)-1))*8.8     # mean gap = span/(k-1) sites, ×8.8 nm/site
+    span=p[-1]-p[0]; return (span/(len(p)-1))*6.0     # mean gap = span/(k-1) sites, ×6 nm/site (unified)
 g=(sub.groupby("code").agg(dH=("Enthalpy","median"),dS=("Entropy","median"),
                            Positions=("Positions","first"),n_reps=("Enthalpy","size")).reset_index())
 g["MeanGap_nm"]=g["Positions"].apply(meangap_nm)

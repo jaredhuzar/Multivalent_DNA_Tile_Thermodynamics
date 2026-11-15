@@ -1,1 +1,1 @@
-Fig 3c. Relative occupancy theta(d)/theta(d1) vs nearest-neighbor bond distance (nm), interfaces with 7nt bonds and 4 binding sites. Classical-OLS point estimate with 95% CI.
+Relative occupancy theta(d)/theta(d1) vs nearest-neighbor bond distance (nm), 7nt bonds, 4 binding sites. dG from Filtered_DF_HS (droop-corrected QC table, Exp_DeltaG median per construct, Reliable rows). Classical-OLS point estimate with full-rank 95% CI (intercept dropped: every construct has 4 bonds, so [1,H] is rank-deficient; df = n-5).

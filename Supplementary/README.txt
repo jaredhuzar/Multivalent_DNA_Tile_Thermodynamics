@@ -35,3 +35,38 @@ OLS_alpha_geometry/   geometry-controlled OLS, response = avidity alpha (n=213).
 HS_vs_MeanGap_7nt_4bonds/  van't Hoff Enthalpy & Entropy vs MEAN GAP (= span/(k-1), nm) for 7nt /
    4-bond interfaces, high-confidence set (n=105). Both ~flat (dH rho=-0.10, dS rho=-0.12).
 Code: ../SI_Figures/add_ols_and_meangap.py
+   SUPERSEDED (2026-11-12) for SI Fig. S10 by Width_vs_MeanGap_7nt_4bonds/ (width-derived dH_vH, cooperative
+   fraction, and model-predicted widths vs mean gap); see that folder's README.
+
+
+==== SI UPDATE 2026-11-12 (multivalent-model revision) ====
+Assembled document: SI_Updates/SI_updates.docx (make_si_updates.py) -- every changed SI figure with caption and numbers,
+Tables S1 and S4, and lists of retired / unchanged items.  Figure numbers below refer to the 11/1/2026 SI draft.
+NEW / REPLACEMENT
+  Ceff_Geometry_OLS/                  per-interface log10 C_eff vs N, span, bond length, GC (replaces the alpha OLS,
+                                      S2_OLS_alpha_geometry/ and Alpha_Geometry_Controlled/; 11/1 Fig S2)
+  Width_vs_MeanGap_7nt_4bonds/        width-derived dH_vH, cooperative fraction and model widths vs mean gap
+                                      (replaces S4_HS_vs_MeanGap / HS_vs_MeanGap; 11/1 Fig S4, main-text S10)
+  BondLength_Ceff/                    bond-type effective concentration vs WLC tether estimate (replaces
+                                      S11_BondLength_Entropy; 11/1 Fig S11)
+  PredictedVsMeasured_NN_Multivalent/ additive NN (1 M) vs multivalent prediction (replaces S12_PredictedVsMeasured_Tm)
+  TableS1_Model_Comparison_All/TableS1_all_models.{csv,docx}  families M (multivalent), A, B; same 236 + folds
+                                      (make_tableS1_combined.py; the older phenomenological_models_table.docx and
+                                      .pdf cover families A/B only)
+  TableS4_Parameter_CIs/TableS4_parameters.{csv,docx}  multivalent (GN + bootstrap) and A2 (jackknife + bootstrap)
+  SI_PhenomenologicalModel_A2/        former main-text Figure 4 (two-state model A2 and its theory curves)
+  ../Figure2_Updated/Panel{H_UniformCeff_Width, I_ReadoutWeight, D_CooperativeUnit, H_BindingCooperativity}  SI panels
+RETIRED (kept on disk, not for the SI): S2_OLS_alpha_geometry/, Alpha_Geometry_Controlled/ (alpha is 1 M-referenced);
+  S10_OLS_dG_geometry/ (dG_exp is the van't Hoff dG of the cooperative unit); S4_HS_vs_MeanGap_7nt_4bonds/;
+  S11_BondLength_Entropy/; S12_PredictedVsMeasured_Tm/; Figure2_Updated/PanelE_dTm_per_added_site/ (1 M additive ref).
+UNCHANGED: AFM (S1), S3_OLS_Tm_geometry (S3), MD (S5), S6_SHAP_Values (S6), oxDNA (S7), S8_BondPosition_Melting (S8),
+  S9_BondLengthCount_Steepness (S9), FRET design (S13), scadnano interface (S14).
+
+==== SI FIGURE NUMBERING (2026-11-13) ====
+The numbered SI figures (S4, S6-S18) are assembled into ../Pseudo_Figures/SI/ by `python3 make_pseudo_figures.py SI`
+(re-runs every generator, then rebuilds the folder); ../Pseudo_Figures/SI/README.md maps each number to its SVG/CSV
+files and source.  Generators added for the numbering: NineNt_MeltingCurves/ (S4), TransitionWidth_ByBonds/ (S6),
+Width_vs_MeanGap_7nt_4bonds/panels/ (S11 merged + S11a/b, S14), SI_PhenomenologicalModel_A2/make_twostate_pred_rank.py
+(S13: prediction + rank), BondLength_Ceff/make_kappa_confound.py (S15), oxDNA/make_rmsf_panel.py (S18);
+S12 = Figure2_Updated/PanelI_ReadoutWeight/figure_bestfit_w.svg; S16 = Figure 5 MD panels e/f (Tm only) + melting example;
+S17 = S6_SHAP_Values/figure.svg + mean_shap_by_site.svg.

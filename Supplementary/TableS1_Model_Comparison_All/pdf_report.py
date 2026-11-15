@@ -12,14 +12,25 @@ from matplotlib.backends.backend_pdf import PdfPages
 os.chdir(__REPO__)
 OUT="Supplementary/TableS1_Model_Comparison_All"
 df=pd.read_csv(os.path.join(OUT,"model_comparison_all_235.csv"))
+_NIF=int(pd.read_csv("Filtered_DF_Tm.csv")["Code"].nunique())   # actual canonical interface count (not hard-coded)
+import re as _re
+def _pfmt(model, raw):   # show lambda->inf (unidentified) when it is >> the 60 nm interface
+    vals=[float(x) for x in _re.findall(r"-?\d+\.?\d*(?:[eE][-+]?\d+)?", str(raw))]
+    if not vals: return str(raw)
+    haslam = not model.split()[0].startswith(("B1","B2"))   # B1/B2 have no lambda
+    if haslam and vals[0]>=500:
+        return "λ→∞ (g→1); " + ", ".join(f"{v:g}" for v in vals[1:])
+    return ", ".join(f"{v:g}" for v in vals)
+df["params"]=[_pfmt(m,p) for m,p in zip(df["model"],df["params"])]
+_best=str(df.loc[df["cvRMS"].astype(float).idxmin(),"model"])   # data-driven best = lowest cv RMS
 
 CORE=(r"$T_m(^\circ\mathrm{C})=\frac{1000\,\sum_k g_k\,\Delta H_{NN,k}}{\Delta S_{\mathrm{eff}}}-273.15,"
       r"\qquad g_k=e^{-\bar d_k/\lambda}$")
 NOTE=(r"$\bar d_k$ = mean distance of bond $k$ to the others;  every $\Delta S_{\mathrm{eff}}$ also includes "
-      r"$+R\ln(C_T/2)\approx-39.6$ cal/mol$\cdot$K.  $N=$ # bonds (2 per site).")
+      r"$+R\ln(C_T/4)\approx-39.6$ cal/mol$\cdot$K ($C_T=9$ nM total, 4.5 nM per tile).  $N=$ # bonds (2 per site).")
 FORMS=[
  (r"A1  mean",                    r"$\Delta S_{\mathrm{eff}}=\sum_k g_k(\Delta S_{NN,k}+\Delta S_{Bond})+\mathrm{base}$"),
- (r"A2  N-scaled $\Delta S_{Bond}$ (best)", r"$\Delta S_{\mathrm{eff}}=\sum_k g_k\Delta S_{NN,k}+N\,\Delta S_{Bond}+\mathrm{base}$"),
+ (r"A2  N-scaled $\Delta S_{Bond}$", r"$\Delta S_{\mathrm{eff}}=\sum_k g_k\Delta S_{NN,k}+N\,\Delta S_{Bond}+\mathrm{base}$"),
  (r"A3  g on $\Delta H$ only",     r"$\Delta S_{\mathrm{eff}}=\sum_k \Delta S_{NN,k}+N\,\Delta S_{Bond}+\mathrm{base}$  (g applied only in $\Delta H$)"),
  (r"A4  nearest-neighbor g",       r"same as A1 with $g_k=e^{-d_{\min,k}/\lambda}$"),
  (r"A5  per-type $\Delta S_{Bond}$", r"$\Delta S_{\mathrm{eff}}=\sum_k g_k(\Delta S_{NN,k}+\Delta S_{Bond}^{\,\mathrm{type}})+\mathrm{base}$"),
@@ -49,13 +60,13 @@ with PdfPages(os.path.join(OUT,"phenomenological_models.pdf")) as pdf:
     pdf.savefig(fig); plt.close(fig)
     # page 2: table
     fig,ax=plt.subplots(figsize=(11,8.5)); ax.axis("off")
-    ax.set_title("Performance (10-fold CV, n = 235 interfaces)",fontsize=14,weight="bold",pad=18)
+    ax.set_title(f"Performance (10-fold CV, n = {_NIF} interfaces)",fontsize=14,weight="bold",pad=18)
     cols=["model","cvRMS","cvR2","cvrho","fitR2","params"]
     tbl=ax.table(cellText=df[cols].values,colLabels=["Model","cv RMS (°C)","cv R²","cv ρ","fit R²","fitted params"],
                  loc="center",cellLoc="center",colWidths=[0.27,0.09,0.08,0.08,0.08,0.40])
     tbl.auto_set_font_size(False); tbl.set_fontsize(8.5); tbl.scale(1,1.6)
     for (r,c),cell in tbl.get_celld().items():
         if r==0: cell.set_facecolor("#4C78A8"); cell.set_text_props(color="white",weight="bold")
-        elif df.iloc[r-1]["model"].startswith("A2"): cell.set_facecolor("#DCE8F5")
+        elif df.iloc[r-1]["model"]==_best: cell.set_facecolor("#DCE8F5")
     pdf.savefig(fig,bbox_inches="tight"); plt.close(fig)
 print("wrote",os.path.join(OUT,"phenomenological_models.pdf"))

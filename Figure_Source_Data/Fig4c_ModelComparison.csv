@@ -1,0 +1,4 @@
+model,n_params,cvRMS,cvrho,log10_Cref_M,lambda_nm,kappa_per_site
+multivalent one uniform C_eff,1,2.3967,0.8235,-2.414,,
+multivalent + distance (lambda),2,1.5697,0.9332,-1.5588,11.6263,
+multivalent + valency (kappa),3,1.3366,0.9345,-1.5731,12.7743,0.0791

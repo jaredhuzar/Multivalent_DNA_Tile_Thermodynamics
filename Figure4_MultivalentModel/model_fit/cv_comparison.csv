@@ -1,0 +1,9 @@
+model,readout,w,n_params,fitRMS,cvRMS,cvrho,log10_Cref_M,lambda_nm,kappa_per_site
+multivalent one uniform C_eff,intermediate,0.57,1,2.3828,2.3967,0.8235,-2.414,,
+multivalent + distance (lambda),intermediate,0.57,2,1.5578,1.5697,0.9332,-1.5588,11.6263,
+multivalent + valency (kappa),intermediate,0.57,3,1.3267,1.3366,0.9345,-1.5731,12.7743,0.0791
+multivalent one uniform C_eff,docking,1.0,1,2.2068,2.219,0.8311,-2.5458,,
+multivalent + distance (lambda),docking,1.0,2,1.4964,1.5073,0.9322,-1.7138,12.6095,
+multivalent + valency (kappa),docking,1.0,3,1.3969,1.4069,0.9307,-1.7028,13.1372,0.0525
+phenomenological A2 (SI; former Fig 4),two-state,,3,1.283,1.298,0.933,,,
+"phenomenological B1, no distance weighting (SI)",two-state,,2,2.241,2.262,0.783,,,

@@ -58,7 +58,7 @@ ax[0].plot(gb.index,gb.values,"k-o",ms=6,lw=1.6,label="median")
 mono=d.dG_mono_median_kcal_mol.abs().median()
 ax[0].axhline(mono,color="0.4",ls="--",lw=1.4,label=f"single monovalent bond ({mono:.1f})")
 ax[0].set(xlabel="number of bonds  (= 2 x sites)",ylabel="interface |$\\Delta$G$_{Exp}$| (kcal/mol)",
-          title="Avidity: total interface strength grows with valency")
+          title="Avidity: total interface strength rises with valency WITHIN a bond length\n(pooled trend is confounded by bond length; 7nt subset rises, pooled median falls)")
 ax[0].legend(fontsize=8.3,loc="upper left")
 
 # Panel B: avidity enhancement over the 4.5 nM bulk

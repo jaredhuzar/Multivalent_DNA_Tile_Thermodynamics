@@ -1,1 +1,2 @@
-Fig 6c. XGBoost out-of-fold predicted Tm vs experimental Tm (stability prediction).
+Fig 6B. XGBoost out-of-fold (10-fold CV, canonical 236 interfaces, Table S1 folds) predicted vs measured Tm.
+Written by ../make_figure6.py.

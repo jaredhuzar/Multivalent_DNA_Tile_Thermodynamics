@@ -14,8 +14,9 @@ SAME Tm / dG / construct set as the rest of the paper -- NOT the separate Boltzm
   Tm            : per-construct median from Filtered_DF_Tm   (fit_Not_Normalized: droop-corrected
                   sigmoid midpoint + SE/Reliable/plateau QC)
   dG37/dH/dS    : per-construct median from Filtered_DF_HS   (droop-corrected van't Hoff)
-  Num_Bonds, MeanGap_nm, span_nm, bond_len, GC : functions of the construct code (helix pitch 8.8 nm;
-                  GC/length from the repo sequence files) -- identical values to the old file.
+  Num_Bonds, MeanGap_nm, span_nm, bond_len, GC : functions of the construct code (site pitch 6.0 nm,
+                  the unified nm-per-site convention used across Fig 3a/3d, the OLS features and Fig 4D;
+                  GC/length from the repo sequence files).
 
 Self-contained: reads only repo files (Filtered_DF_Tm.csv, Filtered_DF_HS.csv, DNA Sequences.xlsx,
 DNA Sequences - 6nt bonds.csv).  Run before the Supplementary OLS / coop_unit scripts.
@@ -47,13 +48,14 @@ def gc_and_len(code):
     for i,ch in enumerate(code):
         if ch=='0': continue
         c='5' if ch=='X' else ch; lens.append(LEN.get(ch,np.nan))
-        s=SEQ.get(c,{}).get(2*i+1)                 # odd physical helix
-        if s: gcs.append((s.count('G')+s.count('C'))/len(s))
+        for h in (2*i+1, 2*i+2):                    # BOTH duplexes (twin helices) at the site
+            s=SEQ.get(c,{}).get(h)
+            if s: gcs.append((s.count('G')+s.count('C'))/len(s))
     return (np.mean(gcs) if gcs else np.nan),(np.mean(lens) if lens else np.nan)
 def geom(code):
     pos=[i for i,ch in enumerate(code) if ch!='0']; nb=len(pos)
-    mg=np.mean(np.diff(sorted(pos)))*8.8 if nb>1 else np.nan
-    sp=(max(pos)-min(pos))*8.8 if nb>1 else 0.0
+    mg=np.mean(np.diff(sorted(pos)))*6.0 if nb>1 else np.nan   # ×6 nm/site (unified)
+    sp=(max(pos)-min(pos))*6.0 if nb>1 else 0.0                 # ×6 nm/site (unified)
     gc,bl=gc_and_len(code)
     return nb,mg,sp,gc,bl
 
@@ -61,6 +63,7 @@ def geom(code):
 tm=pd.read_csv("Filtered_DF_Tm.csv"); tm["code"]=tm["Code"].astype(str).str.partition(".")[0]
 tmG=tm.groupby("code").agg(Tm=("Tm","median")).reset_index()
 hs=pd.read_csv("Filtered_DF_HS.csv"); hs["code"]=hs["Code"].astype(str).str.partition(".")[0]
+hs=hs[(hs["Reliable"]==True)&(hs["Confidence"]=="high")]   # ROBUST set (same measured-dG definition as Fig 2a/2c/2e)
 hsG=hs.groupby("code").agg(dG37=("Exp_DeltaG","median"),Entropy=("Entropy","median"),
                            Enthalpy=("Enthalpy","median")).reset_index()
 # Base the table on the authoritative Tm construct set (Filtered_DF_Tm). dG/dH/dS are looked up from

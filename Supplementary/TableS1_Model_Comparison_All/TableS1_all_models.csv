@@ -1,0 +1,20 @@
+id,family,model,form,n_params,cvRMS,cvR2,cvrho,params
+M1,M multivalent,one uniform C_eff,"C_eff,i = C_ref",1,2.3967,0.7001,0.8235,C_ref = 3.9 mM
+M2,M multivalent,+ distance,"C_eff,i = C_ref e^(−d_i/λ)",2,1.5697,0.8713,0.9332,"C_ref = 27.6 mM, λ = 11.6 nm"
+M3,M multivalent,+ valency (Fig. 4 model),"C_eff,i = C_ref e^(−d_i/λ) e^(−κ(N−4))",3,1.3366,0.9067,0.9345,"C_ref = 26.7 mM, λ = 12.8 nm, κ = 0.079"
+M4,M multivalent,+ bond-type C_eff (no valency),"C_eff,i = C_ref φ_type e^(−d_i/λ)",4,1.3416,0.906,0.935,"C_ref = 30.6 mM, λ = 12.6 nm, φ5 = 0.59, φ6 = 0.74"
+M5,M multivalent,+ bond-type C_eff + valency,"C_eff,i = C_ref φ_type e^(−d_i/λ) e^(−κ(N−4))",5,1.3409,0.9061,0.9348,"C_ref = 28.8 mM, λ = 12.7 nm, κ = 0.041, φ5 = 0.75, φ6 = 0.90"
+M1d,M multivalent,one uniform C_eff [docking readout],"C_eff,i = C_ref",1,2.219,0.7429,0.8311,C_ref = 2.8 mM
+M2d,M multivalent,+ distance [docking readout],"C_eff,i = C_ref e^(−d_i/λ)",2,1.5073,0.8814,0.9322,"C_ref = 19.3 mM, λ = 12.6 nm"
+M3d,M multivalent,+ valency (Fig. 4 model) [docking readout],"C_eff,i = C_ref e^(−d_i/λ) e^(−κ(N−4))",3,1.4069,0.8966,0.9307,"C_ref = 19.8 mM, λ = 13.1 nm, κ = 0.052"
+A1,"A two-state, distance-weighted",mean (g-weighted ΔS_Bond),ΔS = Σg(ΔS_NN+ΔS_Bond)+base,3,1.328,0.9079,0.93,"λ = 28.14, ΔS_Bond = -10.83, base = 21.91"
+A2,"A two-state, distance-weighted",N-scaled ΔS_Bond,ΔS = Σg ΔS_NN + NΔS_Bond + base,3,1.298,0.912,0.933,"λ = 90.09, ΔS_Bond = -8.38, base = 7.31"
+A3,"A two-state, distance-weighted",g on ΔH only,g on ΔH only,3,1.311,0.9103,0.934,"λ→∞ (unidentified), ΔS_Bond = -8.25, base = 8.07"
+A4,"A two-state, distance-weighted",nearest-neighbor g,A1 with nearest-bond g,3,1.977,0.7959,0.84,"λ = 32.74, ΔS_Bond = -11.69, base = 18.4"
+A5,"A two-state, distance-weighted",per-type ΔS_Bond,A1 with ΔS_Bond per bond length,4,1.328,0.9079,0.932,"λ = 26.54, ΔS_short = -10.91, ΔS_long = -11.16, base = 23.67"
+A6,"A two-state, distance-weighted",split λ_H/λ_S,separate λ for ΔH and ΔS,4,1.291,0.913,0.932,"λ_H = 55.48, λ_S = 57.84, ΔS_Bond = -9.37, base = 15.87"
+A7,"A two-state, distance-weighted",occ. + rotational (Green's fn),A2 − k_rot R ln(1+Σ(z−z̄)²),4,1.268,0.916,0.937,"λ = 138.55, ΔS_Bond = -8.68, base = 29.09, k_rot = 1.85"
+B1,"B two-state, mechanical / tethering",g=1 (no arrangement weighting),g = 1: ΣΔH / (ΣΔS_NN + NΔS_Bond + base),2,2.262,0.7328,0.783,"ΔS_Bond = -11.27, base = 7.54"
+B2,"B two-state, mechanical / tethering",g=1 + rotational,B1 − k_rot R ln(1+Σ(z−z̄)²),3,1.369,0.9021,0.933,"ΔS_Bond = -9.45, base = 69.88, k_rot = 5.32"
+B3,"B two-state, mechanical / tethering",g-weighted + WLC tethering,"Σg(ΔS_NN + ΔS_teth,WLC) + base",2,3.177,0.4729,0.602,"λ→∞ (unidentified), base = 49.22"
+B4,"B two-state, mechanical / tethering",WLC tethering only (derived),"Σ(ΔS_NN + ΔS_teth,WLC) + base",2,3.174,0.4739,0.613,"λ→∞ (unidentified), base = 51.19"

@@ -15,9 +15,10 @@ import os; os.chdir(__REPO__)
 
 # ---------- constants ----------
 R_CAL=1.98720425864; C_TILE=4.5e-9; EDGE=60.0; NSLOT=22; RLN=R_CAL*np.log(C_TILE/2.0)
+NM_PER_SITE=6.0; TWIN_NM=1.5   # 6 nm site pitch, 3 nm twin spacing (unified geometry)
 ELL_P_SS, RISE_SS = 1.0, 0.63; NA=6.02214076e23; C0_nm3=1e-24*NA
 
-NN_dH={'AA':-7.6,'AT':-7.2,'AC':-8.4,'AG':-7.8,'TA':-7.2,'TT':-7.6,'TC':-8.2,'TG':-8.5,'CA':-8.5,'CT':-7.8,'CC':-8.0,'CG':-10.6,'GA':-8.2,'GT':-8.4,'GC':-9.8,'GG':-8.0}
+NN_dH={'AA':-7.9,'AT':-7.2,'AC':-8.4,'AG':-7.8,'TA':-7.2,'TT':-7.9,'TC':-8.2,'TG':-8.5,'CA':-8.5,'CT':-7.8,'CC':-8.0,'CG':-10.6,'GA':-8.2,'GT':-8.4,'GC':-9.8,'GG':-8.0}
 NN_dS={'AA':-22.2,'AT':-20.4,'AC':-22.4,'AG':-21.0,'TA':-21.3,'TT':-22.2,'TC':-22.2,'TG':-22.7,'CA':-22.7,'CT':-21.0,'CC':-19.9,'CG':-27.2,'GA':-22.2,'GT':-22.4,'GC':-24.4,'GG':-19.9}
 dH_iGC,dH_iAT,dS_iGC,dS_iAT=0.1,2.3,-2.8,4.1
 def duplex_thermo(seq):
@@ -48,11 +49,11 @@ SEQ={'5':_parse(pd.read_excel(xl,'5nt',header=None)),'7':_parse(pd.read_excel(xl
 TH={t:{h:duplex_thermo(s) for h,s in d.items()} for t,d in SEQ.items()}
 
 # ---------- canonical 235-interface dataset ----------
-tm=pd.read_csv('Filtered_DF_Tm.csv'); tm['code']=tm['Samples'].astype(str).str.partition('.')[0]
+tm=pd.read_csv('Filtered_DF_Tm.csv'); tm['code']=tm['Samples'].astype(str).str.partition('.')[0].str.replace('X','5')  # X->5 so e.g. 07000X70070 == 07000570070 (one construct, not two)
 agg=tm.groupby('code').agg(Tm=('Tm','median')).reset_index()
 def bonds(code):
     labs=[]; [labs.extend(['5' if ch=='X' else ch]*2) for ch in code]
-    z=(np.arange(len(labs))+0.5)/len(labs)*EDGE; out=[]
+    z=np.array([(s//2)*NM_PER_SITE+(TWIN_NM if s%2 else -TWIN_NM) for s in range(len(labs))]); out=[]  # 6 nm/site, 3 nm twins
     for s,lab in enumerate(labs):
         if lab=='0': continue
         th=TH.get(lab,{}).get(s+1)
@@ -69,7 +70,7 @@ def gk(b,lam,mode='mean'):
     z=np.array([x[0] for x in b])
     if len(z)==1: return np.array([1.0])
     if mode=='mean': d=np.array([np.mean(np.abs(np.delete(z,i)-z[i])) for i in range(len(z))])
-    else:            d=np.array([np.min(np.abs(np.delete(z,i)-z[i])) for i in range(len(z))])
+    else:            d=np.array([min((abs(z[j]-z[i]) for j in range(len(z)) if j//2!=i//2), default=0.0) for i in range(len(z))])  # §1.8.1 nearest OTHER site
     return np.exp(-d/lam)
 def inertia(b): z=np.array([x[0] for x in b]); return np.sum((z-z.mean())**2)
 def _msq(nt):
@@ -80,6 +81,8 @@ def _Vsph(nt):
     return (4/3)*np.pi*_msq(nt)**1.5
 SS_STATES={'5':(7,2),'X':(7,2),'6':(7,1),'7':(8,1),'9':(9,0),'A':(8,1),'B':(8,1)}
 def dS_teth(lab):
+    if lab=='6':                       # §1.8.2 asymmetric 6nt bond (8nt one tile, 7nt the other)
+        return R_CAL*np.log(_Vsph(1.5)/(_Vsph(8)*_Vsph(7)*C0_nm3))
     nu,nb=SS_STATES.get(lab,(7,2)); return R_CAL*np.log(_Vsph(nb)/(_Vsph(nu)**2*C0_nm3))
 
 TK=273.15
@@ -100,7 +103,7 @@ def P_tether_only(b,p):lam,base=p; g=gk(b,lam);       return _tm(sum(gi*x[1] for
 
 MODELS=[
  ("A1 mean (g-weighted ΔS_Bond)",        P_mean,     [120,-8,5],  ([1,-60,-200],[1000,5,400])),
- ("A2 N-scaled ΔS_Bond  [best occ.]",    P_Nscale,   [120,-8,5],  ([1,-60,-200],[1000,5,400])),
+ ("A2 N-scaled ΔS_Bond",                 P_Nscale,   [120,-8,5],  ([1,-60,-200],[1000,5,400])),
  ("A3 g on ΔH only",                     P_hOnly,    [120,-8,5],  ([1,-60,-200],[1000,5,400])),
  ("A4 nearest-neighbor g",               P_nn,       [120,-8,5],  ([1,-60,-200],[1000,5,400])),
  ("A5 per-type ΔS_Bond",                 P_pertype,  [120,-8,-8,5],([1,-60,-60,-200],[1000,5,5,400])),
@@ -108,8 +111,8 @@ MODELS=[
  ("A7 occ. + rotational (Green's fn)",   P_Nscale_rot,[120,-8,5,.1],([1,-60,-200,-5],[1000,5,400,20])),
  ("B1 g=1 (no arrangement weighting)",   P_g1,       [-8,5],      ([-60,-200],[5,400])),
  ("B2 g=1 + rotational",                 P_g1_rot,   [-8,5,.1],   ([-60,-200,-5],[5,400,20])),
- ("B3 g-weighted + WLC tethering",       P_gw_tether,[120,5],     ([1,-200],[1000,400])),
- ("B4 WLC tethering only (derived)",     P_tether_only,[120,5],   ([1,-200],[1000,400])),
+ ("B3 g-weighted + WLC tethering",       P_gw_tether,[120,5],     ([1,-200],[1e6,400])),   # raised lam bound (was 1000; B4 was railed)
+ ("B4 WLC tethering only (derived)",     P_tether_only,[120,5],   ([1,-200],[1e6,400])),   # raised lam bound: B4 now reaches its true g~1 optimum
 ]
 
 def fit(pred,p0,bnds,idx=None):

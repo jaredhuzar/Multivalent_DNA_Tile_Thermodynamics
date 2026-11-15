@@ -17,7 +17,7 @@ sub=d[(d["NucleotideBonds"]=="7") & (d["Num_Bonds"]==4) & (d["Reliable"]==True) 
 g=(sub.groupby("code")
       .agg(dH=("Enthalpy","median"), dS=("Entropy","median"),
            Distances=("Distances","first"), n_reps=("Enthalpy","size")).reset_index())
-g["bond_distance_nm"]=g["Distances"]*8.8          # mean pairwise inter-bond distance
+g["bond_distance_nm"]=g["Distances"]*6.0          # mean pairwise inter-bond distance (×6 nm/site, unified)
 g.to_csv(os.path.join(OUT,"hs_vs_distance_7nt_4bonds.csv"), index=False)
 
 x=g["bond_distance_nm"].values

@@ -12,6 +12,7 @@ PROJ=__REPO__; os.chdir(PROJ)
 OUT=os.path.join(PROJ,"Extras","CooperativeUnit_vs_BondCount")
 
 hs=pd.read_csv("Filtered_DF_HS.csv"); hs["code"]=hs["Code"].astype(str).str.partition(".")[0]
+hs=hs[(hs["Reliable"]==True)&(hs["Confidence"]=="high")]  # ROBUST set (same as Fig 2a/2c): drop low-confidence points
 hs=hs[~hs["code"].str.contains("9")]                      # 9nt excluded
 cm=pd.read_csv("Experimental_Trends/construct_medians.csv"); cm["code"]=cm["code"].astype(str).str.partition(".")[0]
 g=hs.groupby("code").agg(dH=("Enthalpy","median"),dS=("Entropy","median"),sites=("Num_Bonds","first")).reset_index()
@@ -20,9 +21,10 @@ g["N_bonds"]=2*g["sites"].astype(int)                     # each binding site = 
 g.to_csv(os.path.join(OUT,"coop_unit_vs_bondcount.csv"),index=False)
 
 rH=spearmanr(g.N_bonds,g.dH); rS=spearmanr(g.N_bonds,g.dS)
+_rng=np.random.default_rng(0)                             # seeded jitter (reproducible)
 fig,ax=plt.subplots(1,2,figsize=(13,5.2))
 for a,(col,lab,rr,ylab) in zip(ax,[("dH","ΔH",rH,"van't Hoff ΔH (kcal/mol)"),("dS","ΔS",rS,"van't Hoff ΔS (cal/mol/K)")]):
-    sc=a.scatter(g.N_bonds+np.random.normal(0,0.15,len(g)),g[col],c=g.bond_len,cmap="viridis",s=26,alpha=0.7,edgecolor="none")
+    sc=a.scatter(g.N_bonds+_rng.normal(0,0.15,len(g)),g[col],c=g.bond_len,cmap="viridis",s=26,alpha=0.7,edgecolor="none")
     med=g.groupby("N_bonds")[col].median()
     a.plot(med.index,med.values,"o-",color="#E4572E",lw=2.5,ms=8,label="median per bond count")
     a.axhline(g[col].median(),color="0.4",ls="--",lw=1.2,label=f"overall median = {g[col].median():.0f}")
@@ -31,7 +33,7 @@ for a,(col,lab,rr,ylab) in zip(ax,[("dH","ΔH",rH,"van't Hoff ΔH (kcal/mol)"),(
     a.legend(fontsize=8.5,loc="upper right")
 cb=fig.colorbar(sc,ax=ax,fraction=0.025,pad=0.02); cb.set_label("bond length (nt)")
 ax[0].text(0.03,0.06,"≈ one helix (cooperative unit),\nnot the sum of all bonds",transform=ax[0].transAxes,fontsize=9,color="0.25")
-fig.suptitle("Cooperative melting unit is ~1 helix: ΔH and ΔS barely change from 4 to 20 bonds (9nt excluded, n=%d)"%len(g),y=1.02,fontsize=12)
+fig.suptitle("Cooperative melting unit is ~1 helix: ΔH and ΔS barely change from %d to %d bonds (9nt excluded, n=%d)"%(int(g.N_bonds.min()),int(g.N_bonds.max()),len(g)),y=1.02,fontsize=12)
 plt.savefig(os.path.join(OUT,"coop_unit_vs_bondcount.svg"),bbox_inches="tight")
 print(f"n={len(g)} | ΔH: Spearman ρ={rH[0]:+.3f} p={rH[1]:.1e}, median={g.dH.median():.1f} kcal/mol")
 print(f"        ΔS: Spearman ρ={rS[0]:+.3f} p={rS[1]:.1e}, median={g.dS.median():.1f} cal/mol/K")

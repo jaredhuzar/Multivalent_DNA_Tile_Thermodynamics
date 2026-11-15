@@ -1,0 +1,4 @@
+parameter,point_estimate,GN_SE,GN_CI95_low,GN_CI95_high,n_constructs,readout_w,boot_SE,boot_CI95_low,boot_CI95_high,n_bootstrap
+log10_Cref_M,-1.57313,0.04176,-1.65541,-1.49084,236,0.57,0.03739,-1.65806,-1.50424,200
+lambda_nm,12.77431,0.69419,11.40662,14.14199,236,0.57,0.64478,11.78468,14.25689,200
+kappa_per_site,0.0791,0.00845,0.06245,0.09576,236,0.57,0.00717,0.06519,0.09238,200

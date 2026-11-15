@@ -4,27 +4,35 @@ Also here: Fig1C_MeltingCurves.csv (written by ../Figure1_Platform_AFM/make_melt
 plots_robust_v2/ (a copy of the canonical Fig 5 MD outputs). Fig 5B is center-only (edge excluded);
 MD Tm uses the n_max/2 crossing; dG/dS/alpha/avidity reflect the C_T = 9 nM (total) van't Hoff.
 
-Fig2a_NNdG_vs_ExpdG.csv              n=213   all robust interfaces: NN-predicted vs measured dG (no subset)
-Fig2b_Tm_by_Sites.csv                n=200   SUBSET: 7-nt bonds at 4/5 sites + 5-nt bonds at 9/10 sites
-Fig2c_Alpha_by_Sites.csv             n=191   SUBSET: cooperativity alpha for the Fig 2b interfaces (7-nt 4/5 sites + 5-nt 9/10 sites)
-Fig2d_ddG_addbond.csv                n=158   SUBSET: one-added-site ddG, regimes 4->5 (7-nt) and 9->10 (5-nt) only
-Fig2e_Avidity.csv                    n=208   SUBSET: avidity enhancement grouped 7-nt (7/A/B) vs 5-nt bonds (6-nt excluded)
-Fig3a_Tm_vs_MeanGap.csv              n=105   SUBSET: 7-nt bonds, 4 binding sites (Tm vs mean bond gap)
-Fig3b_Tm_vs_SpanResidual.csv         n=235   all interfaces: Tm residual vs bond-span residual (other covariates controlled)
+Fig2a_NNdG_vs_ExpdG.csv              n=219   all robust interfaces: NN-predicted vs measured dG (no subset)
+Fig2b_Tm_by_Sites.csv                n=212   SUBSET: 7-nt bonds at 4/5 sites + 5-nt bonds at 9/10 sites
+Fig2c_Alpha_by_Sites.csv             n=199   SUBSET: cooperativity alpha for the Fig 2b interfaces (7-nt 4/5 sites + 5-nt 9/10 sites)
+Fig2d_ddG_addbond.csv                n=274   SUBSET: one-added-site ddG, regimes 4->5 (7-nt) and 9->10 (5-nt) only
+Fig2e_Avidity.csv                    n=214   SUBSET: avidity enhancement grouped 7-nt (7/A/B) vs 5-nt bonds (6-nt excluded)
+Fig3a_Tm_vs_MeanGap.csv              n=109   SUBSET: 7-nt bonds, 4 binding sites (Tm vs mean bond gap)
+Fig3b_Tm_vs_SpanResidual.csv         n=236   all interfaces: Tm residual vs bond-span residual (other covariates controlled)
 Fig3c_Tm_vs_BondPosition.csv         n=6     SUBSET: constant-sequence positional series (6 constructs)
 Fig3d_Occupancy_vs_Distance.csv      n=5     SUBSET: 7-nt interfaces, inferred occupancy vs nearest-bond distance
-Fig4b_Pred_vs_Exp.csv                n=235   all interfaces: phenomenological out-of-fold predicted vs experimental Tm
-Fig6b_XGB_Pred_vs_Exp.csv            n=235   all interfaces: XGBoost out-of-fold predicted vs experimental Tm
-Fig6c_XGB_RankRank.csv               n=235   all interfaces: XGBoost predicted vs experimental Tm rank
-Fig6d_ModelComparison.csv            n=6     per-model Spearman rho, 6 models incl. Phenomenological (the panel's full bar set)
-Fig4c_MeltingCurves_vs_NumBonds.csv  n=22    THEORY: predicted melt (Tm, theta@40C) per bond count 2-12
-Fig4d_Decomp_vs_NumBonds.csv         n=22    THEORY: free-energy decomposition vs number of bonds
-Fig4e_MeltingCurves_vs_Spacing.csv   n=10    THEORY: predicted melt (Tm, theta@40C) vs bond spacing
-Fig4f_Decomp_vs_Spacing.csv          n=50    THEORY: free-energy decomposition vs bond spacing
+SI_A2_Pred_vs_Exp.csv                n=236   all interfaces: former Fig 4b, phenomenological (A2) out-of-fold predicted vs experimental Tm
+Fig6b_XGB_Pred_vs_Exp.csv            n=236   all interfaces: XGBoost out-of-fold predicted vs experimental Tm
+Fig6c_XGB_RankRank.csv               n=236   all interfaces: XGBoost predicted vs experimental Tm rank
+Fig6d_ModelComparison.csv            n=5     manuscript Fig 6C: held-out rho/RMS of 6 models incl. the multivalent model of Fig 4 (same 236, same folds)
+Fig6e_EdgeSites_Spacing.csv          n=109   SUBSET: four-site 7-nt interfaces, edge vs no edge: measured, mean-gap residual, measured - multivalent model
+Fig4b_Pred_vs_Exp.csv                n=236   all 236 interfaces: multivalent model out-of-fold (10-fold CV) predicted vs measured Tm
+Fig4c_ModelComparison.csv            n=3     CV RMS / rho of the nested multivalent variants (intermediate readout, as plotted)
+Fig4d_Tm_vs_NumSites_theory.csv      n=22    THEORY: Tm vs occupied sites (clustered windows containing site 5), with and without kappa
+Fig4e_Tm_vs_MeanGap_theory.csv       n=120   THEORY: Tm and width for all 120 four-site 7-nt arrangements (+ one-uniform-Ceff model)
+Fig4f_MeltCurves_vs_Spacing_theory.csv n=500   THEORY: theta(T) for synthetic four-site interfaces (identical bonds) at gap 6-20 nm
+Fig4g_Occupancy_vs_Distance_theory.csv n=960   THEORY: per-duplex occupancy at the interface Tm vs mean distance, 120 arrangements
+Fig4h_DesignMap_theory.csv           n=20    THEORY: predicted Tm over occupied sites x uniform spacing (7-nt bonds, 5-nt reporter at site 5)
+SI_A2_MeltingCurves_vs_NumBonds.csv  n=22    THEORY: predicted melt (Tm, theta@40C) per bond count 2-12
+SI_A2_Decomp_vs_NumBonds.csv         n=11    THEORY: free-energy decomposition vs number of bonds
+SI_A2_MeltingCurves_vs_Spacing.csv   n=10    THEORY: predicted melt (Tm, theta@40C) vs bond spacing
+SI_A2_Decomp_vs_Spacing.csv          n=50    THEORY: free-energy decomposition vs bond spacing
 Fig5b_Tm_vs_BondSpacing.csv          n=12    MD: simulated Tm (kT) vs bond spacing; flexible vs rigid scaffold
 Fig5c_Tm_vs_LinkerRigidity.csv       n=22    MD: simulated Tm (kT) vs linker rigidity; bond spacings 2 & 6 (rigid scaffold rod80)
 Fig5e_Tm_vs_ScaffoldRigidity.csv     n=8     MD: simulated Tm (kT) vs scaffold rigidity (rod 4/20/80/240); bond spacings 2 & 6
 Fig5d_BinderDistance_byLinker.csv    n=1028  MD: binder (tip-tip) distance per linker bending stiffness 4/10/20/40 (kT=2 swarm)
-Fig5f_ExtensionSpread_vs_RodBending.csv n=3     MD: extension-position spread (intra_sigma) vs rod bending stiffness 4/20/80 (sp4, kT=1.5)
+Fig5f_ExtensionSpread_vs_RodBending.csv n=9     MD: anchor-spacing spread (intra_sigma) vs rod bending stiffness 4/20/80 (sp4), kT = 1.25/1.5/1.75
 Fig5g_MeanTipGap_heatmap.csv         n=16    MD: mean tip gap over linker (chain_bend) x scaffold (rod_bend), kT=2
 Fig5h_TipGapSpread_heatmap.csv       n=16    MD: tip-gap spread (sigma) over linker x scaffold, kT=2

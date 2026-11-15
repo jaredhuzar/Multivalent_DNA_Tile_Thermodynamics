@@ -1,13 +1,13 @@
-panel,series,x,Tm,bonds
-b,Flex center,3,1.6064,1.7895
-b,Flex center,5,1.3763,0.9808
-b,Flex center,7,1.2865,0.7292
-b,Flex center,8,1.2224,1.303
-b,Flex center,9,1.2103,0.7632
-b,Flex center,10,1.299,0.8929
-b,Rigid center,3,1.7022,1.8318
-b,Rigid center,5,1.5085,1.5221
-b,Rigid center,7,1.3964,0.8039
-b,Rigid center,8,1.4051,1.0645
-b,Rigid center,9,1.3595,0.8841
-b,Rigid center,10,1.2307,0.8333
+panel,series,x,Tm,Tm_sd
+b,Flex center,3,1.5553,0.1056
+b,Flex center,5,1.3966,0.0741
+b,Flex center,7,1.2222,0.1066
+b,Flex center,8,1.2133,0.1292
+b,Flex center,9,1.1808,0.0596
+b,Flex center,10,1.1896,0.0942
+b,Rigid center,3,1.6115,0.1479
+b,Rigid center,5,1.4148,0.1647
+b,Rigid center,7,1.3989,0.0648
+b,Rigid center,8,1.3918,0.1147
+b,Rigid center,9,1.3416,0.0527
+b,Rigid center,10,1.2314,0.1188
