@@ -1,0 +1,8 @@
+Section,Parameter,Units,Estimate,SE,SE_type,CI95_low,CI95_high,Meaning
+Multivalent model MV3 (Fig. 4),C_ref,mM,26.7221,0.042,log10,22.0,31.3,effective concentration of a bond at zero distance in a four-site interface
+Multivalent model MV3 (Fig. 4),λ,nm,12.7743,0.694,Gauss-Newton,11.8,14.3,decay length of the effective concentration with mean distance
+Multivalent model MV3 (Fig. 4),κ,per site,0.0791,0.00845,Gauss-Newton,0.0652,0.0924,fractional loss of effective concentration per occupied site
+Multivalent model MV3 (Fig. 4),w,,0.57,,fixed,,,"FRET readout weight, set from transition widths (Fig. 2, SI)"
+Two-state model M3 (row A2),λ,nm,90.0897,4.34,jackknife,82.6,99.1,decay length of the two-state weight g = e^(−d/λ)
+Two-state model M3 (row A2),ΔS_Bond,cal mol⁻¹ K⁻¹,-8.3822,0.123,jackknife,-8.63,-8.14,per-bond entropy (≈ R ln C_eff)
+Two-state model M3 (row A2),ΔS_0,cal mol⁻¹ K⁻¹,7.3108,0.839,jackknife,5.69,8.87,dimerization entropy offset
